@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PW3.TPFinal.Web</title>
+
+    @*Template CSS*@
+    <!-- Plugins css Style -->
+    <link href='~/template/plugins/fontawesome-5.15.2/css/all.min.css' rel='stylesheet'>
+    <link href='~/template/plugins/fontawesome-5.15.2/css/fontawesome.min.css' rel='stylesheet'>
+    <link href="~/template/plugins/animate/animate.css" rel="stylesheet">
+    <link href="~/template/plugins/menuzord/css/menuzord.css" rel="stylesheet">
+    <link href="~/template/plugins/menuzord/css/menuzord-animations.css" rel="stylesheet">
+    <link href='~/template/plugins/fancybox/jquery.fancybox.min.css' rel='stylesheet'>
+
+    <!-- GOOGLE FONT -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700' rel='stylesheet'>
+
+    <!-- TEMPLATE CSS -->
+    <link href="~/template/css/star.css" id="option_style" rel="stylesheet">
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/png" href="~/template/img/favicon.png" />
+
+    @* NUESTRO CSS *@
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    <partial name="_NavBar.cshtml" />
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <partial name="_Footer.cshtml" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template JS -->
+    <script src="~/template/plugins/menuzord/js/menuzord.js"></script>
+    <script src='~/template/plugins/fancybox/jquery.fancybox.min.js'></script>
+    <script src="~/template/plugins/lazyestload/lazyestload.js"></script>
+    <script src="~/template/plugins/smoothscroll/SmoothScroll.js"></script>
+    <script src="~/template/js/star.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
