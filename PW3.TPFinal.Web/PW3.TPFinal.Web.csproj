@@ -13,4 +13,8 @@
     <Folder Include="wwwroot\template\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PW3.TPFinal.Servicios\PW3.TPFinal.Servicios.csproj" />
+  </ItemGroup>
+
 </Project>
