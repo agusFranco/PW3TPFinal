@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PW3.TPFinal.Servicios;
+using PW3.TPFinal.Servicios.Contratos;
 
 namespace PW3.TPFinal.Web
 {
@@ -19,6 +21,15 @@ namespace PW3.TPFinal.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // El mismo para todo el request;
+            services.AddScoped<IEventoServicio, EventoServicio>();
+
+            //// Uno para cada instancia que la requiera;
+            //services.AddTransient<IEventoServicio, EventoServicio>();
+
+            //// El mismo para todo sin morir.
+            //services.AddSingleton<IEventoServicio, EventoServicio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

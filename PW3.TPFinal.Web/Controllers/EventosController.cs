@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PW3.TPFinal.Servicios.Contratos;
 using PW3.TPFinal.Web.Models;
 
 namespace PW3.TPFinal.Web.Controllers
@@ -16,6 +13,7 @@ namespace PW3.TPFinal.Web.Controllers
         public EventosController(ILogger<EventosController> logger)
         {
             _logger = logger;
+            _eventoServicio = eventoServicio;
         }
 
         public IActionResult Index()
