@@ -9,17 +9,18 @@ using PW3.TPFinal.Web.Models;
 
 namespace PW3.TPFinal.Web.Controllers
 {
-    public class HomeController : Controller
+    public class EventosController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<EventosController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public EventosController(ILogger<EventosController> logger)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
         {
+
             return View();
         }
 
