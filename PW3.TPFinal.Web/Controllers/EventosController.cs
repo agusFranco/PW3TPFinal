@@ -3,14 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Servicios.Contratos;
 using PW3.TPFinal.Web.Models;
+using System;
+using System.Collections.Generic;
 
 namespace PW3.TPFinal.Web.Controllers
 {
     public class EventosController : Controller
     {
         private readonly ILogger<EventosController> _logger;
+        private readonly IEventoServicio _eventoServicio;
 
-        public EventosController(ILogger<EventosController> logger)
+        public EventosController(ILogger<EventosController> logger, IEventoServicio eventoServicio)
         {
             _logger = logger;
             _eventoServicio = eventoServicio;
@@ -18,8 +21,9 @@ namespace PW3.TPFinal.Web.Controllers
 
         public IActionResult Index()
         {
+            List<Evento> eventosConAlMenosUnComentario = (List<Evento>)_eventoServicio.ObtenerUltimosSeisConAlMenosUnComentario();
 
-            return View();
+            return View(eventosConAlMenosUnComentario);
         }
 
         public IActionResult Privacy()

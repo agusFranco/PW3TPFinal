@@ -16,9 +16,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Repositorio", "2. Repositorio", "{53DB4D2A-4114-4A73-A287-659101DDAB48}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Servicios", "3. Servicios", "{D98E4794-B749-4B98-B4FC-C2F552756A11}"
-	ProjectSection(SolutionItems) = preProject
-		EventosService.cs = EventosService.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Web", "4. Web", "{AC75BA1D-00ED-4204-9AE6-6D2BEC92BBC7}"
 EndProject

@@ -4,4 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PW3.TPFinal.Dominio\PW3.TPFinal.Dominio.csproj" />
+  </ItemGroup>
+
 </Project>

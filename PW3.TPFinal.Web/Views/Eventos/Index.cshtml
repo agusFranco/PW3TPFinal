@@ -1,159 +1,38 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<Evento>
+
+@{
+    ViewData["Title"] = "Eventos";
 }
 <section class="bg-smoke py-10">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="card card-hover">
-                    <a href="single-package-right-sidebar.html" class="position-relative">
-                        <img class="card-img-top lazyestload" data-src="template/img/home/deal/deal-01.jpg" src="template/img/home/deal/deal-01.jpg" alt="Card image cap">
-                    </a>
-                    <div class="card-body px-4">
-                        <h5>
-                            <a href="single-package-right-sidebar.html" class="card-title text-uppercase">Suspendisse Tour</a>
-                        </h5>
-                        <p class="mb-5">
-                            Integer purus ex, dictum nec elementum eu, tristique vel lectus. Donec rutrum lectus et pharetra
-                            egestas.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <p class="mb-0 text-capitalize">Start from</p>
-                                <h3 class="text-primary">$299</h3>
-                            </div>
-                            <div>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#inquiry" class="btn btn-xs btn-outline-secondary text-uppercase">Inquiry</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="card card-hover">
-                    <a href="single-package-right-sidebar.html" class="position-relative">
-                        <img class="card-img-top lazyestload" data-src="template/img/home/deal/deal-01.jpg" src="template/img/home/deal/deal-01.jpg" alt="Card image cap">
-                    </a>
-                    <div class="card-body px-4">
-                        <h5>
-                            <a href="single-package-right-sidebar.html" class="card-title text-uppercase">Suspendisse Tour</a>
-                        </h5>
-                        <p class="mb-5">
-                            Integer purus ex, dictum nec elementum eu, tristique vel lectus. Donec rutrum lectus et pharetra
-                            egestas.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <p class="mb-0 text-capitalize">Start from</p>
-                                <h3 class="text-primary">$299</h3>
-                            </div>
-                            <div>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#inquiry" class="btn btn-xs btn-outline-secondary text-uppercase">Inquiry</a>
+            @foreach(var evento in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="card card-hover">
+                        <a href="single-package-right-sidebar.html" class="position-relative">
+                            <img class="card-img-top lazyestload" data-src="template/img/home/deal/deal-01.jpg" src="template/img/home/deal/deal-01.jpg" alt="Card image cap">
+                        </a>
+                        <div class="card-body px-4">
+                            <h5>
+                                <a href="single-package-right-sidebar.html" class="card-title text-uppercase"> @evento.Nombre</a>
+                            </h5>
+                            <p class="mb-5">
+                                @evento.Puntuacion
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="mb-0 text-capitalize">Start from</p>
+                                    <h3 class="text-primary">@evento.Precio</h3>
+                                </div>
+                                <div>
+                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#inquiry" class="btn btn-xs btn-outline-secondary text-uppercase">Inquiry</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="card card-hover">
-                    <a href="single-package-right-sidebar.html" class="position-relative">
-                        <img class="card-img-top lazyestload" data-src="template/img/home/deal/deal-01.jpg" src="template/img/home/deal/deal-01.jpg" alt="Card image cap">
-                    </a>
-                    <div class="card-body px-4">
-                        <h5>
-                            <a href="single-package-right-sidebar.html" class="card-title text-uppercase">Suspendisse Tour</a>
-                        </h5>
-                        <p class="mb-5">
-                            Integer purus ex, dictum nec elementum eu, tristique vel lectus. Donec rutrum lectus et pharetra
-                            egestas.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <p class="mb-0 text-capitalize">Start from</p>
-                                <h3 class="text-primary">$299</h3>
-                            </div>
-                            <div>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#inquiry" class="btn btn-xs btn-outline-secondary text-uppercase">Inquiry</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="card card-hover">
-                    <a href="single-package-right-sidebar.html" class="position-relative">
-                        <img class="card-img-top lazyestload" data-src="template/img/home/deal/deal-01.jpg" src="template/img/home/deal/deal-01.jpg" alt="Card image cap">
-                    </a>
-                    <div class="card-body px-4">
-                        <h5>
-                            <a href="single-package-right-sidebar.html" class="card-title text-uppercase">Suspendisse Tour</a>
-                        </h5>
-                        <p class="mb-5">
-                            Integer purus ex, dictum nec elementum eu, tristique vel lectus. Donec rutrum lectus et pharetra
-                            egestas.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <p class="mb-0 text-capitalize">Start from</p>
-                                <h3 class="text-primary">$299</h3>
-                            </div>
-                            <div>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#inquiry" class="btn btn-xs btn-outline-secondary text-uppercase">Inquiry</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="card card-hover">
-                    <a href="single-package-right-sidebar.html" class="position-relative">
-                        <img class="card-img-top lazyestload" data-src="template/img/home/deal/deal-01.jpg" src="template/img/home/deal/deal-01.jpg" alt="Card image cap">
-                    </a>
-                    <div class="card-body px-4">
-                        <h5>
-                            <a href="single-package-right-sidebar.html" class="card-title text-uppercase">Suspendisse Tour</a>
-                        </h5>
-                        <p class="mb-5">
-                            Integer purus ex, dictum nec elementum eu, tristique vel lectus. Donec rutrum lectus et pharetra
-                            egestas.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <p class="mb-0 text-capitalize">Start from</p>
-                                <h3 class="text-primary">$299</h3>
-                            </div>
-                            <div>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#inquiry" class="btn btn-xs btn-outline-secondary text-uppercase">Inquiry</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="card card-hover">
-                    <a href="single-package-right-sidebar.html" class="position-relative">
-                        <img class="card-img-top lazyestload" data-src="template/img/home/deal/deal-01.jpg" src="template/img/home/deal/deal-01.jpg" alt="Card image cap">
-                    </a>
-                    <div class="card-body px-4">
-                        <h5>
-                            <a href="single-package-right-sidebar.html" class="card-title text-uppercase">Suspendisse Tour</a>
-                        </h5>
-                        <p class="mb-5">
-                            Integer purus ex, dictum nec elementum eu, tristique vel lectus. Donec rutrum lectus et pharetra
-                            egestas.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <p class="mb-0 text-capitalize">Start from</p>
-                                <h3 class="text-primary">$299</h3>
-                            </div>
-                            <div>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#inquiry" class="btn btn-xs btn-outline-secondary text-uppercase">Inquiry</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>
