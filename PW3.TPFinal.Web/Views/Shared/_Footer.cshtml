@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-6 col-lg-3 mb-7 mb-lg-0">
                     <a class="d-inline-block" href="index.html">
-                        <img class="w-100 mb-6 lazyestload" data-src="template/img/logo-color-sm.png" src="template/img/logo-color-sm.png" alt="img">
+                        <img class="w-100 mb-6" src="@Url.Content("~/template/img/logo-color-sm.png")" alt="img">
                     </a>
                     <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute</p>
                 </div>
@@ -54,8 +54,7 @@
                         <div class="col-4 mb-3">
                             <div class="media media-hover">
                                 <div class="content w-100">
-                                    <img class="media-img lazyestload" data-src="template/img/home/gallery/thumb-gallery-1.jpg"
-                                         src="template/img/home/gallery/thumb-gallery-1.jpg" alt="gallery-img">
+                                    <img class="media-img" src="@Url.Content("~/template/img/home/gallery/thumb-gallery-1.jpg")" alt="gallery-img">
                                     <a class="media-img-overlay" data-fancybox="footer-gallery" href="template/img/home/gallery/gallery-1.jpg"></a>
                                 </div>
                             </div>
@@ -64,8 +63,7 @@
                         <div class="col-4 mb-3">
                             <div class="media media-hover">
                                 <div class="content w-100">
-                                    <img class="media-img lazyestload" data-src="template/img/home/gallery/thumb-gallery-2.jpg"
-                                         src="template/img/home/gallery/thumb-gallery-2.jpg" alt="gallery-img">
+                                    <img class="media-img" src=" @Url.Content("~/template/img/home/gallery/thumb-gallery-2.jpg")" alt="gallery-img">
                                     <a class="media-img-overlay" data-fancybox="footer-gallery" href="template/img/home/gallery/gallery-2.jpg"></a>
                                 </div>
                             </div>
@@ -74,8 +72,7 @@
                         <div class="col-4 mb-3">
                             <div class="media media-hover">
                                 <div class="content w-100">
-                                    <img class="media-img lazyestload" data-src="template/img/home/gallery/thumb-gallery-3.jpg"
-                                         src="template/img/home/gallery/thumb-gallery-3.jpg" alt="gallery-img">
+                                    <img class="media-img" src=" @Url.Content("~/template/img/home/gallery/thumb-gallery-3.jpg")" alt="gallery-img">
                                     <a class="media-img-overlay" data-fancybox="footer-gallery" href="template/img/home/gallery/gallery-3.jpg"></a>
                                 </div>
                             </div>
@@ -84,8 +81,7 @@
                         <div class="col-4">
                             <div class="media media-hover">
                                 <div class="content w-100">
-                                    <img class="media-img lazyestload" data-src="template/img/home/gallery/thumb-gallery-4.jpg"
-                                         src="template/img/home/gallery/thumb-gallery-4.jpg" alt="gallery-img">
+                                    <img class="media-img" src=" @Url.Content("~/template/img/home/gallery/thumb-gallery-4.jpg")" alt="gallery-img">
                                     <a class="media-img-overlay" data-fancybox="footer-gallery" href="template/img/home/gallery/gallery-4.jpg"></a>
                                 </div>
                             </div>
@@ -94,8 +90,7 @@
                         <div class="col-4">
                             <div class="media media-hover">
                                 <div class="content w-100">
-                                    <img class="media-img lazyestload" data-src="template/img/home/gallery/thumb-gallery-5.jpg"
-                                         src="template/img/home/gallery/thumb-gallery-5.jpg" alt="gallery-img">
+                                    <img class="media-img" src=" @Url.Content("~/template/img/home/gallery/thumb-gallery-5.jpg")" alt="gallery-img">
                                     <a class="media-img-overlay" data-fancybox="footer-gallery" href="template/img/home/gallery/gallery-5.jpg"></a>
                                 </div>
                             </div>
@@ -104,8 +99,7 @@
                         <div class="col-4">
                             <div class="media media-hover">
                                 <div class="content w-100">
-                                    <img class="media-img lazyestload" data-src="template/img/home/gallery/thumb-gallery-6.jpg"
-                                         src="template/img/home/gallery/thumb-gallery-6.jpg" alt="gallery-img">
+                                    <img class="media-img" src=" @Url.Content("~/template/img/home/gallery/thumb-gallery-6.jpg")" alt="gallery-img">
                                     <a class="media-img-overlay" data-fancybox="footer-gallery" href="template/img/home/gallery/gallery-6.jpg"></a>
                                 </div>
                             </div>
@@ -199,8 +193,8 @@
     </div>
 
     <script>
-                var d = new Date();
-                var year = d.getFullYear();
-                document.getElementById("copy-year").innerHTML = year;
+        var d = new Date();
+        var year = d.getFullYear();
+        document.getElementById("copy-year").innerHTML = year;
     </script>
 </footer>

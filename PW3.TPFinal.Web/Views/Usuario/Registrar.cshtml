@@ -1,0 +1,69 @@
+﻿@using PW3.TPFinal.Comun.Modelos;
+@model RegistrarUsuarioModel;
+
+@{
+    ViewData["Title"] = "Registrarse";
+}
+<section class="py-5">
+    <div class="container">
+        <h1 class="text-uppercase font-weight-bold">Registrarse</h1>
+
+        <form asp-action="Registrar" asp-controller="Usuario" method="post">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label asp-for="Nombre">Nombre</label>
+                        <input type="text" asp-for="Nombre" class="form-control border-0 bg-smoke">
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label asp-for="Email">Email</label>
+                        <input type="email" asp-for="Email" class="form-control border-0 bg-smoke">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label asp-for="Password">Password</label>
+                        <input type="password" asp-for="Password" class="form-control border-0 bg-smoke">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label asp-for="ConfirmarPassword">Password</label>
+                        <input type="password" asp-for="ConfirmarPassword" class="form-control border-0 bg-smoke">
+                        <span asp-validation-for="ConfirmarPassword" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Perfil" id="cocinero" value="1">
+                        <label class="form-check-label" for="cocinero">
+                            Cocinero
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Perfil" id="comensal" value="2" checked>
+                        <label class="form-check-label" for="comensal">
+                            Comensal
+                        </label>
+                    </div>
+                    <span asp-validation-for="Perfil" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="text-center text-md-start text-lg-end">
+                <button type="submit" class="btn btn-primary text-uppercase">
+                    SUBMIT
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
