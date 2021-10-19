@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using PW3.TPFinal.Dominio;
 
 #nullable disable
@@ -11,10 +12,13 @@ namespace PW3.TPFinal.Repositorio.Configuracion
         {
         }
 
-        public TPFinalContext(DbContextOptions<TPFinalContext> options)
+        public TPFinalContext(IConfiguration configuration, DbContextOptions<TPFinalContext> options)
             : base(options)
         {
+            this.Configuracion = configuration;
         }
+
+        public IConfiguration Configuracion { get; }
 
         public virtual DbSet<Calificacione> Calificaciones { get; set; }
         public virtual DbSet<Evento> Eventos { get; set; }
@@ -28,7 +32,7 @@ namespace PW3.TPFinal.Repositorio.Configuracion
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=20212C_TP;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(this.Configuracion.GetConnectionString("TPFinalContext"));
             }
         }
 
