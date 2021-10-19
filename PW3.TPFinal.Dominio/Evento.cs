@@ -1,26 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace PW3.TPFinal.Web.Models
+#nullable disable
+
+namespace PW3.TPFinal.Dominio
 {
-    public class Evento
+    public partial class Evento
     {
-        public String Nombre { get; set; }
-        public String Foto { get; set; }
-        public Decimal Puntuacion { get; set; }
-        public List<String> Comentarios { get; set; }
-        public Cocinero cocinero { get; set; }
-        public Double Precio { get; set; }
-
-        public Evento(String Nombre, String Foto, List<String> Comentarios, Decimal Puntuacion, Double Precio)
+        public Evento()
         {
-            this.Nombre = Nombre;
-            this.Foto = Foto;
-            this.Comentarios = Comentarios;
-            this.Puntuacion = Puntuacion;
-            this.Precio = Precio;
+            Calificaciones = new HashSet<Calificacione>();
+            EventosReceta = new HashSet<EventosReceta>();
+            Reservas = new HashSet<Reserva>();
         }
+
+        public int IdEvento { get; set; }
+        public int IdCocinero { get; set; }
+        public string Nombre { get; set; }
+        public DateTime Fecha { get; set; }
+        public int CantidadComensales { get; set; }
+        public string Ubicacion { get; set; }
+        public string Foto { get; set; }
+        public decimal Precio { get; set; }
+        public int Estado { get; set; }
+
+        public virtual Usuario IdCocineroNavigation { get; set; }
+        public virtual ICollection<Calificacione> Calificaciones { get; set; }
+        public virtual ICollection<EventosReceta> EventosReceta { get; set; }
+        public virtual ICollection<Reserva> Reservas { get; set; }
     }
 }

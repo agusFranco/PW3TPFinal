@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PW3.TPFinal.Repositorio.Configuracion;
+using PW3.TPFinal.Repositorio.Contratos;
+using PW3.TPFinal.Repositorio.Implementaciones;
 using PW3.TPFinal.Servicios;
 using PW3.TPFinal.Servicios.Contratos;
 
@@ -20,16 +24,24 @@ namespace PW3.TPFinal.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<TPFinalContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TPFinalContext")));
+
             services.AddControllersWithViews();
 
             // El mismo para todo el request;
-            services.AddScoped<IEventoServicio, EventoServicio>();
+            //services.AddScoped<IEventoServicio, EventoServicio>();
 
             //// Uno para cada instancia que la requiera;
             //services.AddTransient<IEventoServicio, EventoServicio>();
 
             //// El mismo para todo sin morir.
             //services.AddSingleton<IEventoServicio, EventoServicio>();
+
+            // Configuro Repositorios
+            services.AddScoped<IEventoRepositorio, EventoRepositorio>();
+
+            // Configuro Servicios
+            services.AddScoped<IEventoServicio, EventoServicio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
