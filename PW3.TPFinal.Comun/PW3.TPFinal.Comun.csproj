@@ -8,4 +8,8 @@
     <Folder Include="Extensiones\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PW3.TPFinal.Dominio\PW3.TPFinal.Dominio.csproj" />
+  </ItemGroup>
+
 </Project>

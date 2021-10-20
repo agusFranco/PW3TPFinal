@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Modelos;
+using PW3.TPFinal.Comun.Resultado;
 using PW3.TPFinal.Dominio;
 using PW3.TPFinal.Repositorio.Contratos;
 using PW3.TPFinal.Servicios.Contratos;
@@ -25,26 +26,43 @@ namespace PW3.TPFinal.Servicios
             return this.UsuarioRepositorio.Obtener().ToList();
         }
 
-        public Usuario Registrar(RegistrarUsuarioModel modelo)
+        public Resultado<Usuario> Registrar(RegistrarUsuarioModel modelo)
         {
+            var resultado = new Resultado<Usuario>();
+
             try
             {
+                var existente = this.UsuarioRepositorio.ObtenerPorEmail(modelo.Email);
+
+                if(existente != null)
+                {
+                    resultado.Success = false;
+                    resultado.Mensaje = "El Email ya esta en uso.";
+                    return resultado;
+                }
+
                 Usuario nuevo = new Usuario();
 
                 nuevo.Nombre = modelo.Nombre;
                 nuevo.Email = modelo.Email;
                 nuevo.Password = modelo.Password;       
-                nuevo.Perfil = modelo.Perfil ?? 1;
+                nuevo.Perfil = (int)modelo.Perfil;
                 nuevo.FechaRegistracion = DateTime.UtcNow;
 
                 this.UsuarioRepositorio.Agregar(nuevo);
                 this.UsuarioRepositorio.Guardar();
-                return nuevo;
+
+                resultado.Success = true;
+                resultado.Mensaje = $"Bienvenido {nuevo.Nombre}.";
+                resultado.Dato = nuevo;
+                return resultado;
             }
             catch (Exception ex)
             {
-                this.Logger.LogError($"Ocurrio un error, {ex.Message}");
-                return null;
+                this.Logger.LogError($"Ocurrio un error. Ex.Mensaje = {ex.Message}");
+                resultado.Success = false;
+                resultado.Mensaje = "Ocurrio un error al guardar el usuario. Intente Nuevamente.";
+                return resultado;
             }
         }
     }

@@ -13,6 +13,7 @@ namespace PW3.TPFinal.Dominio
         }
 
         public int IdTipoReceta { get; set; }
+
         public string Nombre { get; set; }
 
         public virtual ICollection<Receta> Receta { get; set; }

@@ -31,13 +31,15 @@ namespace PW3.TPFinal.Web.Controllers
                 return View(modelo);
             }
 
-            var usuario = this.UsuarioServicio.Registrar(modelo);
+            var resultado = this.UsuarioServicio.Registrar(modelo);
 
-            if (usuario == null)
+            if (!resultado.Success)
             {
+                ViewBag.Mensaje = resultado.Mensaje;
                 return View(modelo);
             }
 
+            TempData["Mensaje"] = resultado.Mensaje;
             return RedirectToAction("Index", "Eventos");
         }
     }
