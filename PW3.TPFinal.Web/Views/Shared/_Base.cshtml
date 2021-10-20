@@ -28,17 +28,18 @@
 </head>
 <body>
 
-    <partial name="_NavBar.cshtml" />
+    @*<partial name="_NavBar.cshtml" />
 
-    <main role="main">
-        @RenderBody()
-    </main>
+        <main role="main">
+            @RenderBody()
+        </main>*@
+    @RenderBody()
 
     <partial name="_Footer.cshtml" />
 
     <script src="~/template/plugins/jquery/jquery.min.js"></script>
     <script src="~/template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Template JS -->
     <script src="~/template/plugins/menuzord/js/menuzord.js"></script>
     <script src='~/template/plugins/fancybox/jquery.fancybox.min.js'></script>

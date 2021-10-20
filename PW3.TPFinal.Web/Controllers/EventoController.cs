@@ -8,12 +8,12 @@ using PW3.TPFinal.Web.Models;
 
 namespace PW3.TPFinal.Web.Controllers
 {
-    public class EventosController : Controller
+    public class EventoController : Controller
     {
-        private readonly ILogger<EventosController> _logger;
+        private readonly ILogger<EventoController> _logger;
         private readonly IEventoServicio _eventoServicio;
 
-        public EventosController(ILogger<EventosController> logger, IEventoServicio eventoServicio)
+        public EventoController(ILogger<EventoController> logger, IEventoServicio eventoServicio)
         {
             _logger = logger;
             _eventoServicio = eventoServicio;
@@ -23,12 +23,7 @@ namespace PW3.TPFinal.Web.Controllers
         {
             IList<Evento> eventos = _eventoServicio.ObtenerTodos();
             return View(eventos);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        }      
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
