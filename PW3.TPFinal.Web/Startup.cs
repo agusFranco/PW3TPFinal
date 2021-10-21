@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PW3.TPFinal.Repositorio.Configuracion;
 using PW3.TPFinal.Repositorio.Contratos;
+using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Repositorio.Implementaciones;
 using PW3.TPFinal.Servicios;
 using PW3.TPFinal.Servicios.Contratos;
@@ -24,7 +24,7 @@ namespace PW3.TPFinal.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TPFinalContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TPFinalContext")));
+            services.AddDbContext<_20212C_TPContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TPFinalContext")));
 
             services.AddControllersWithViews();
 

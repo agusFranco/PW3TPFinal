@@ -4,8 +4,8 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Comun.Resultado;
-using PW3.TPFinal.Dominio;
 using PW3.TPFinal.Repositorio.Contratos;
+using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Servicios.Contratos;
 
 namespace PW3.TPFinal.Servicios

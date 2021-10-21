@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -6,10 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Extensiones\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\PW3.TPFinal.Dominio\PW3.TPFinal.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

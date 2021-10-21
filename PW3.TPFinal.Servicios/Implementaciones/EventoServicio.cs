@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PW3.TPFinal.Dominio;
 using PW3.TPFinal.Repositorio.Contratos;
+using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Servicios.Contratos;
 
 namespace PW3.TPFinal.Servicios

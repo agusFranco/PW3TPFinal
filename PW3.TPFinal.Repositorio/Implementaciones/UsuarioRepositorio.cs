@@ -1,13 +1,12 @@
 ﻿using System.Linq;
-using PW3.TPFinal.Dominio;
-using PW3.TPFinal.Repositorio.Configuracion;
 using PW3.TPFinal.Repositorio.Contratos;
+using PW3.TPFinal.Repositorio.Data;
 
 namespace PW3.TPFinal.Repositorio.Implementaciones
 {
     public class UsuarioRepositorio : BaseRepositorio<Usuario, int>, IUsuarioRepositorio
     {
-        public UsuarioRepositorio(TPFinalContext context) : base(context)
+        public UsuarioRepositorio(_20212C_TPContext context) : base(context)
         {
         }
 

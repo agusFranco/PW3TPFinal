@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using PW3.TPFinal.Dominio;
+using PW3.TPFinal.Repositorio.Data;
 
 namespace PW3.TPFinal.Servicios.Contratos
 {

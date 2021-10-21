@@ -1,24 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using PW3.TPFinal.Dominio;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace PW3.TPFinal.Repositorio.Configuracion
+namespace PW3.TPFinal.Repositorio.Data
 {
-    public partial class TPFinalContext : DbContext
+    public partial class _20212C_TPContext : DbContext
     {
-        public TPFinalContext()
+        public _20212C_TPContext()
         {
         }
 
-        public TPFinalContext(IConfiguration configuration, DbContextOptions<TPFinalContext> options)
+        public _20212C_TPContext(DbContextOptions<_20212C_TPContext> options)
             : base(options)
         {
-            this.Configuracion = configuration;
         }
-
-        public IConfiguration Configuracion { get; }
 
         public virtual DbSet<Calificacione> Calificaciones { get; set; }
         public virtual DbSet<Evento> Eventos { get; set; }
@@ -32,7 +29,8 @@ namespace PW3.TPFinal.Repositorio.Configuracion
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(this.Configuracion.GetConnectionString("TPFinalContext"));
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=20212C_TP;Trusted_Connection=True;");
             }
         }
 
