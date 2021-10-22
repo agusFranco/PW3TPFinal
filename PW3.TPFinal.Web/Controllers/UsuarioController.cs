@@ -42,5 +42,26 @@ namespace PW3.TPFinal.Web.Controllers
             TempData["Mensaje"] = resultado.Mensaje;
             return RedirectToAction("Index", "Eventos");
         }
+
+        public IActionResult Ingresar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Ingresar(IngresarUsuarioModel modelo)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            if (this.UsuarioServicio.ValidarUsuario(modelo)) 
+            {
+                return RedirectToAction("Index", "Eventos");
+            }
+            ModelState.AddModelError(string.Empty, "Credenciales incorrectas");
+            return View(modelo);
+        }
     }
 }

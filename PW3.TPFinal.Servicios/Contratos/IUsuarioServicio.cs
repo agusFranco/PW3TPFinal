@@ -10,5 +10,7 @@ namespace PW3.TPFinal.Servicios.Contratos
         IList<Usuario> ObtenerTodos();
 
         Resultado<Usuario> Registrar(RegistrarUsuarioModel modelo);
+
+        bool ValidarUsuario(IngresarUsuarioModel modelo);
     }
 }

@@ -65,5 +65,10 @@ namespace PW3.TPFinal.Servicios
                 return resultado;
             }
         }
+
+        public bool ValidarUsuario(IngresarUsuarioModel modelo)
+        {
+            return this.UsuarioRepositorio.ValidarUsuario(modelo.Email, modelo.Password);
+        }
     }
 }
