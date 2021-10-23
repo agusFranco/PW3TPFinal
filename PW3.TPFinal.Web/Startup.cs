@@ -9,6 +9,7 @@ using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Repositorio.Implementaciones;
 using PW3.TPFinal.Servicios;
 using PW3.TPFinal.Servicios.Contratos;
+using System;
 
 namespace PW3.TPFinal.Web
 {
@@ -36,6 +37,14 @@ namespace PW3.TPFinal.Web
 
             //// El mismo para todo sin morir.
             //services.AddSingleton<IEventoServicio, EventoServicio>();
+
+            //Configuro Session
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "Session";
+                options.IdleTimeout =  TimeSpan.FromSeconds(1200);
+            });
+
 
             // Configuro Repositorios
             services.AddScoped<IEventoRepositorio, EventoRepositorio>();
@@ -65,6 +74,8 @@ namespace PW3.TPFinal.Web
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

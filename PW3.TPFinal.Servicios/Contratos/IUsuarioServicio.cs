@@ -11,6 +11,6 @@ namespace PW3.TPFinal.Servicios.Contratos
 
         Resultado<Usuario> Registrar(RegistrarUsuarioModel modelo);
 
-        bool ValidarUsuario(IngresarUsuarioModel modelo);
+        Usuario ValidarUsuario(IngresarUsuarioModel modelo);
     }
 }

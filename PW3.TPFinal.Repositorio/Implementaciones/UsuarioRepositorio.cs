@@ -18,11 +18,11 @@ namespace PW3.TPFinal.Repositorio.Implementaciones
                            .FirstOrDefault();
         }
 
-        public bool ValidarUsuario(string email, string password)
+        public Usuario ValidarUsuario(string email, string password)
         {
             var usuario = this.Set.FirstOrDefault(u => u.Email == email && u.Password== password);
             
-            return usuario!= null;
+            return usuario;
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Modelos;
+using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Servicios.Contratos;
 
 namespace PW3.TPFinal.Web.Controllers
@@ -56,10 +58,16 @@ namespace PW3.TPFinal.Web.Controllers
                 return View();
             }
 
-            if (this.UsuarioServicio.ValidarUsuario(modelo)) 
+            Usuario usuarioBuscado = UsuarioServicio.ValidarUsuario(modelo);
+            if (usuarioBuscado != null)
             {
-                return RedirectToAction("Index", "Eventos");
+                HttpContext.Session.SetInt32("idUsuario", usuarioBuscado.IdUsuario);
+                HttpContext.Session.SetInt32("rolUsuario", usuarioBuscado.Perfil);
+                
+
+                return RedirectToAction("Index", "Evento");
             }
+
             ModelState.AddModelError(string.Empty, "Credenciales incorrectas");
             return View(modelo);
         }
