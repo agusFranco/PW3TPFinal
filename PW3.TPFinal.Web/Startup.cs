@@ -49,10 +49,12 @@ namespace PW3.TPFinal.Web
             // Configuro Repositorios
             services.AddScoped<IEventoRepositorio, EventoRepositorio>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+            services.AddScoped<IRecetaRepositorio, RecetaRepositorio>();
 
             // Configuro Servicios
             services.AddScoped<IEventoServicio, EventoServicio>();
             services.AddScoped<IUsuarioServicio, UsuarioServicio>();
+            services.AddScoped<ICocineroServicio, CocineroServicio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

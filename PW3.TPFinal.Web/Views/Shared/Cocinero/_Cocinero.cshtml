@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PW3.TPFinal.Web.Views.Shared
-{
-    public class _Cocinero
-    {
-    }
+﻿@{
+    Layout = "_Base";
 }
+
+<partial name="_Cocinero_NavBar.cshtml" />
+
+<main role="main">
+    @RenderBody()
+</main>
