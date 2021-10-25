@@ -5,14 +5,14 @@ using PW3.TPFinal.Servicios.Contratos;
 
 namespace PW3.TPFinal.Web.Controllers
 {
-    public class CocinerosController : Controller
+    public class CocineroController : Controller
     {
-        private readonly ILogger<CocinerosController> Logger;
+        private readonly ILogger<CocineroController> Logger;
         private readonly ICocineroServicio CocineroServicio;
 
-        public CocinerosController(
+        public CocineroController(
                                 ICocineroServicio cocineroServicio,
-                                ILogger<CocinerosController> logger)
+                                ILogger<CocineroController> logger)
         {
             this.Logger = logger;
             this.CocineroServicio = cocineroServicio;
@@ -41,7 +41,7 @@ namespace PW3.TPFinal.Web.Controllers
 
             TempData["Mensaje"] = resultado.Mensaje;
 
-            return RedirectToAction("Perfil", "Cocineros");
+            return RedirectToAction("Perfil", "Cocinero");
         }
 
         public IActionResult Eventos()

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Repositorio.Implementaciones;
 using PW3.TPFinal.Servicios;
 using PW3.TPFinal.Servicios.Contratos;
-using System;
+using PW3.TPFinal.Web.Middleware;
 
 namespace PW3.TPFinal.Web
 {
@@ -42,7 +43,7 @@ namespace PW3.TPFinal.Web
             services.AddSession(options =>
             {
                 options.Cookie.Name = "Session";
-                options.IdleTimeout =  TimeSpan.FromSeconds(1200);
+                options.IdleTimeout = TimeSpan.FromSeconds(1200);
             });
 
 
@@ -70,6 +71,7 @@ namespace PW3.TPFinal.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -78,6 +80,19 @@ namespace PW3.TPFinal.Web
             app.UseAuthorization();
 
             app.UseSession();
+
+            app.UseWhen(context => context.Request.Path.Value.Contains("Cocineros", StringComparison.InvariantCultureIgnoreCase),
+                         app =>
+                         {
+                             app.UseMiddleware<CocinerosMiddleware>();
+                         });
+
+            app.UseWhen(context => context.Request.Path.Value.Contains("Comensales", StringComparison.InvariantCultureIgnoreCase),
+                        app =>
+                        {
+                            app.UseMiddleware<ComensalesMiddleware>();
+                        });
+
 
             app.UseEndpoints(endpoints =>
             {

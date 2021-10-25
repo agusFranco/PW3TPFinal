@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PW3.TPFinal.Comun.Enums;
 using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Servicios.Contratos;
+using PW3.TPFinal.Web.Extensiones;
 
 namespace PW3.TPFinal.Web.Controllers
 {
@@ -41,8 +43,9 @@ namespace PW3.TPFinal.Web.Controllers
                 return View(modelo);
             }
 
-            TempData["Mensaje"] = resultado.Mensaje;
-            return RedirectToAction("Index", "Eventos");
+            HttpContext.Session.SetUsuario(resultado.Dato);
+
+            return this.Redirigir(resultado.Dato.Perfil);
         }
 
         public IActionResult Ingresar()
@@ -58,19 +61,27 @@ namespace PW3.TPFinal.Web.Controllers
                 return View();
             }
 
-            Usuario usuarioBuscado = UsuarioServicio.ValidarUsuario(modelo);
+            Usuario usuario = UsuarioServicio.ValidarUsuario(modelo);
 
-            if (usuarioBuscado != null)
+            if (usuario != null)
             {
-                HttpContext.Session.SetInt32("idUsuario", usuarioBuscado.IdUsuario);
-                HttpContext.Session.SetInt32("rolUsuario", usuarioBuscado.Perfil);
-                
-
-                return RedirectToAction("Index", "Evento");
+                HttpContext.Session.SetUsuario(usuario);
+                return this.Redirigir(usuario.Perfil);
             }
 
             ModelState.AddModelError(string.Empty, "Credenciales incorrectas");
             return View(modelo);
+        }
+
+        private RedirectToActionResult Redirigir(int perfil)
+        {
+            if (perfil == (int)TipoUsuario.Cocinero)
+                return RedirectToAction("Perfil", "Cocinero");
+
+            if (perfil == (int)TipoUsuario.Comensal)
+                return RedirectToAction("Reservas", "Comensal");
+
+            return RedirectToAction("Index", "Evento");
         }
     }
 }
