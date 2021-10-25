@@ -5,31 +5,25 @@
     Layout = "Anonimo/_Anonimo";
     ViewData["Title"] = "Ingresar";
 }
-<section class="py-9">
+<section class="py-10">
     <div class="container">
         <h1 class="text-uppercase font-weight-bold">Ingresar</h1>
-
         <form asp-action="Ingresar" asp-controller="Usuario" method="post">
-
-                <div asp-validation-summary="ModelOnly" class="text-danger">
-                        
-                </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label asp-for="Email">Email</label>
                         <input type="email" asp-for="Email" class="form-control border-0 bg-smoke">
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
-                </div>
-
-                <div class="col-lg-6">
                     <div class="form-group">
                         <label asp-for="Password">Password</label>
                         <input type="password" asp-for="Password" class="form-control border-0 bg-smoke">
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
-                </div>
-
+                </div>             
+            </div>
 
             <div class="text-center text-md-start text-lg-left">
                 <button type="submit" class="btn btn-primary text-uppercase">

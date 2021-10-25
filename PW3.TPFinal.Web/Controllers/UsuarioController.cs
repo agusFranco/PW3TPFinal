@@ -59,6 +59,7 @@ namespace PW3.TPFinal.Web.Controllers
             }
 
             Usuario usuarioBuscado = UsuarioServicio.ValidarUsuario(modelo);
+
             if (usuarioBuscado != null)
             {
                 HttpContext.Session.SetInt32("idUsuario", usuarioBuscado.IdUsuario);
