@@ -81,17 +81,8 @@ namespace PW3.TPFinal.Web
 
             app.UseSession();
 
-            app.UseWhen(context => context.Request.Path.Value.Contains("Cocineros", StringComparison.InvariantCultureIgnoreCase),
-                         app =>
-                         {
-                             app.UseMiddleware<CocinerosMiddleware>();
-                         });
 
-            app.UseWhen(context => context.Request.Path.Value.Contains("Comensales", StringComparison.InvariantCultureIgnoreCase),
-                        app =>
-                        {
-                            app.UseMiddleware<ComensalesMiddleware>();
-                        });
+            ConfigurarMiddleware(app);
 
 
             app.UseEndpoints(endpoints =>
@@ -100,6 +91,21 @@ namespace PW3.TPFinal.Web
                     name: "default",
                     pattern: "{controller=Evento}/{action=Index}/{id?}");
             });
+        }
+
+        private void ConfigurarMiddleware(IApplicationBuilder app)
+        {
+            app.UseWhen(context => context.Request.Path.StartsWithSegments("/Cocinero", StringComparison.InvariantCultureIgnoreCase),
+                  app =>
+                  {
+                      app.UseMiddleware<CocinerosMiddleware>();
+                  });
+
+            app.UseWhen(context => context.Request.Path.StartsWithSegments("/Comensal", StringComparison.InvariantCultureIgnoreCase),
+                        app =>
+                        {
+                            app.UseMiddleware<ComensalesMiddleware>();
+                        });
         }
     }
 }
