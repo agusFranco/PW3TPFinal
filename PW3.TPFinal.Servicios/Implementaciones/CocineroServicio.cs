@@ -11,9 +11,9 @@ namespace PW3.TPFinal.Servicios
     public class CocineroServicio : ICocineroServicio
     {
         private readonly IRecetaRepositorio RecetaRepositorio;
-        private readonly ILogger<UsuarioServicio> Logger;
+        private readonly ILogger<CocineroServicio> Logger;
 
-        public CocineroServicio(IRecetaRepositorio recetaRepositorio, ILogger<UsuarioServicio> logger)
+        public CocineroServicio(IRecetaRepositorio recetaRepositorio, ILogger<CocineroServicio> logger)
         {
             this.RecetaRepositorio = recetaRepositorio;
             this.Logger = logger;

@@ -56,6 +56,7 @@ namespace PW3.TPFinal.Web
             services.AddScoped<IEventoServicio, EventoServicio>();
             services.AddScoped<IUsuarioServicio, UsuarioServicio>();
             services.AddScoped<ICocineroServicio, CocineroServicio>();
+            services.AddScoped<IComensalServicio, ComensalServicio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,10 +97,10 @@ namespace PW3.TPFinal.Web
         private void ConfigurarMiddleware(IApplicationBuilder app)
         {
             app.UseWhen(context => context.Request.Path.StartsWithSegments("/Cocinero", StringComparison.InvariantCultureIgnoreCase),
-                  app =>
-                  {
-                      app.UseMiddleware<CocinerosMiddleware>();
-                  });
+                        app =>
+                        {
+                            app.UseMiddleware<CocinerosMiddleware>();
+                        });
 
             app.UseWhen(context => context.Request.Path.StartsWithSegments("/Comensal", StringComparison.InvariantCultureIgnoreCase),
                         app =>
