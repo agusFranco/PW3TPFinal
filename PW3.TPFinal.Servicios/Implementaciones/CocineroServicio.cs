@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Comun.Resultado;
@@ -11,11 +13,15 @@ namespace PW3.TPFinal.Servicios
     public class CocineroServicio : ICocineroServicio
     {
         private readonly IRecetaRepositorio RecetaRepositorio;
+        private readonly ITipoRecetaRepositorio TipoRecetaRepositorio;
         private readonly ILogger<CocineroServicio> Logger;
 
-        public CocineroServicio(IRecetaRepositorio recetaRepositorio, ILogger<CocineroServicio> logger)
+        public CocineroServicio(IRecetaRepositorio recetaRepositorio,
+                                ITipoRecetaRepositorio tipoRecetaRepositorio,
+                                ILogger<CocineroServicio> logger)
         {
             this.RecetaRepositorio = recetaRepositorio;
+            this.TipoRecetaRepositorio = tipoRecetaRepositorio;
             this.Logger = logger;
         }
 
@@ -49,6 +55,11 @@ namespace PW3.TPFinal.Servicios
                 resultado.Mensaje = "Ocurrio un error al guardar la receta. Intente Nuevamente.";
                 return resultado;
             }
+        }
+
+        public List<TipoReceta> ObtenerTiposDeReceta()
+        {
+            return this.TipoRecetaRepositorio.Obtener().ToList();
         }
     }
 }

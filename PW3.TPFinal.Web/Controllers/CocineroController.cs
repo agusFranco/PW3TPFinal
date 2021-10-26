@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Servicios.Contratos;
@@ -20,7 +23,12 @@ namespace PW3.TPFinal.Web.Controllers
 
         public IActionResult Recetas()
         {
-            return View();
+            var modelo = new AgregarRecetaModel
+            {
+                TipoRecetas = this.ObtenerTipoRecetas()
+            };
+
+            return View(modelo);
         }
 
         [HttpPost]
@@ -28,6 +36,7 @@ namespace PW3.TPFinal.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                modelo.TipoRecetas = this.ObtenerTipoRecetas();
                 return View(modelo);
             }
 
@@ -57,6 +66,13 @@ namespace PW3.TPFinal.Web.Controllers
         public IActionResult Cancelacion()
         {
             return View();
+        }
+
+        private List<SelectListItem> ObtenerTipoRecetas()
+        {
+            return this.CocineroServicio.ObtenerTiposDeReceta()?
+                                                    .Select(x => new SelectListItem() { Text = x.Nombre, Value = x.IdTipoReceta.ToString() })?
+                                                    .ToList() ?? new List<SelectListItem>();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace PW3.TPFinal.Web.Middleware
             {
                 context.Response.Redirect("/Evento/Index");
                 return;
-            }          
+            }
 
             await _next(context);          
         }

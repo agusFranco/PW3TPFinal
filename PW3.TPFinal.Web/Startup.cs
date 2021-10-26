@@ -51,6 +51,7 @@ namespace PW3.TPFinal.Web
             services.AddScoped<IEventoRepositorio, EventoRepositorio>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<IRecetaRepositorio, RecetaRepositorio>();
+            services.AddScoped<ITipoRecetaRepositorio, TipoRecetaRepositorio>();
 
             // Configuro Servicios
             services.AddScoped<IEventoServicio, EventoServicio>();
