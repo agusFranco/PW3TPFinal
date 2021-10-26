@@ -12,11 +12,11 @@
         <form asp-action="Recetas" asp-controller="Cocinero" method="post">
             <div class="row">
                 @*    Si hubo un error al guardar el usuario, muestro mensaje*@
-                @{ if (!string.IsNullOrWhiteSpace(@ViewBag.Mensaje))
+                @{ if (!string.IsNullOrWhiteSpace(TempData["Mensaje"] as string))
                     {
                         <div class="col-lg-12">
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                @ViewBag.Mensaje
+                               @TempData["Mensaje"]
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         </div>

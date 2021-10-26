@@ -23,12 +23,7 @@ namespace PW3.TPFinal.Web.Controllers
 
         public IActionResult Recetas()
         {
-            var modelo = new AgregarRecetaModel
-            {
-                TipoRecetas = this.ObtenerTipoRecetas()
-            };
-
-            return View(modelo);
+            return View(this.ObtenerAgregarRecetaModel());
         }
 
         [HttpPost]
@@ -36,19 +31,17 @@ namespace PW3.TPFinal.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                modelo.TipoRecetas = this.ObtenerTipoRecetas();
-                return View(modelo);
+                return View(this.ObtenerAgregarRecetaModel(modelo));
             }
 
             var resultado = this.CocineroServicio.AgregarReceta(modelo);
 
+            TempData["Mensaje"] = resultado.Mensaje;
+
             if (!resultado.Success)
             {
-                ViewBag.Mensaje = resultado.Mensaje;
-                return View(modelo);
-            }
-
-            TempData["Mensaje"] = resultado.Mensaje;
+                return View(this.ObtenerAgregarRecetaModel(modelo));
+            }      
 
             return RedirectToAction("Perfil", "Cocinero");
         }
@@ -73,6 +66,15 @@ namespace PW3.TPFinal.Web.Controllers
             return this.CocineroServicio.ObtenerTiposDeReceta()?
                                                     .Select(x => new SelectListItem() { Text = x.Nombre, Value = x.IdTipoReceta.ToString() })?
                                                     .ToList() ?? new List<SelectListItem>();
+        }
+
+        private AgregarRecetaModel ObtenerAgregarRecetaModel(AgregarRecetaModel modelo = null)
+        {
+            modelo = modelo ?? new AgregarRecetaModel();
+
+            modelo.TipoRecetas = this.ObtenerTipoRecetas();
+
+            return modelo;
         }
     }
 }
