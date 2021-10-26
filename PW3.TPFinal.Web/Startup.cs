@@ -107,6 +107,12 @@ namespace PW3.TPFinal.Web
                         {
                             app.UseMiddleware<ComensalesMiddleware>();
                         });
+
+            app.UseWhen(context => context.Request.Path.StartsWithSegments("/Usuario", StringComparison.InvariantCultureIgnoreCase),
+             app =>
+             {
+                 app.UseMiddleware<UsuarioMiddleware>();
+             });
         }
     }
 }
