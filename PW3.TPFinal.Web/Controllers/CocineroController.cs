@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Servicios.Contratos;
+using PW3.TPFinal.Web.Filters;
 
 namespace PW3.TPFinal.Web.Controllers
 {
+    [EsCocinero]
     public class CocineroController : Controller
     {
         private readonly ILogger<CocineroController> Logger;
@@ -70,7 +72,7 @@ namespace PW3.TPFinal.Web.Controllers
 
         private AgregarRecetaModel ObtenerAgregarRecetaModel(AgregarRecetaModel modelo = null)
         {
-            modelo = modelo ?? new AgregarRecetaModel();
+            modelo ??= new AgregarRecetaModel();
 
             modelo.TipoRecetas = this.ObtenerTipoRecetas();
 

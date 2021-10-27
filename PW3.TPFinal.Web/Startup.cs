@@ -10,7 +10,7 @@ using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Repositorio.Implementaciones;
 using PW3.TPFinal.Servicios;
 using PW3.TPFinal.Servicios.Contratos;
-using PW3.TPFinal.Web.Middleware;
+using PW3.TPFinal.Web.Filters;
 
 namespace PW3.TPFinal.Web
 {
@@ -46,6 +46,10 @@ namespace PW3.TPFinal.Web
                 options.IdleTimeout = TimeSpan.FromSeconds(1200);
             });
 
+            // Filtros
+            services.AddScoped<EsCocinero>();
+            services.AddScoped<EsComensal>();
+            services.AddScoped<NoEstaLogeado>();
 
             // Configuro Repositorios
             services.AddScoped<IEventoRepositorio, EventoRepositorio>();
@@ -97,23 +101,23 @@ namespace PW3.TPFinal.Web
 
         private void ConfigurarMiddleware(IApplicationBuilder app)
         {
-            app.UseWhen(context => context.Request.Path.StartsWithSegments("/Cocinero", StringComparison.InvariantCultureIgnoreCase),
-                        app =>
-                        {
-                            app.UseMiddleware<CocinerosMiddleware>();
-                        });
+            //app.UseWhen(context => context.Request.Path.StartsWithSegments("/Cocinero", StringComparison.InvariantCultureIgnoreCase),
+            //            app =>
+            //            {
+            //                app.UseMiddleware<CocinerosMiddleware>();
+            //            });
 
-            app.UseWhen(context => context.Request.Path.StartsWithSegments("/Comensal", StringComparison.InvariantCultureIgnoreCase),
-                        app =>
-                        {
-                            app.UseMiddleware<ComensalesMiddleware>();
-                        });
+            //app.UseWhen(context => context.Request.Path.StartsWithSegments("/Comensal", StringComparison.InvariantCultureIgnoreCase),
+            //            app =>
+            //            {
+            //                app.UseMiddleware<ComensalesMiddleware>();
+            //            });
 
-            app.UseWhen(context => context.Request.Path.StartsWithSegments("/Usuario", StringComparison.InvariantCultureIgnoreCase),
-             app =>
-             {
-                 app.UseMiddleware<UsuarioMiddleware>();
-             });
+            //app.UseWhen(context => context.Request.Path.StartsWithSegments("/Usuario", StringComparison.InvariantCultureIgnoreCase),
+            // app =>
+            // {
+            //     app.UseMiddleware<UsuarioMiddleware>();
+            // });
         }
     }
 }

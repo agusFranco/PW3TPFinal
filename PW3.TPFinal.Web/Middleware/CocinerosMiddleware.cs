@@ -19,9 +19,9 @@ namespace PW3.TPFinal.Web.Middleware
                 return;
             }
 
-            if (!context.Session.EsCocinero())
+            if (!context.Session.EsComensal())
             {
-                context.Response.Redirect("/Comensal/Reservas");
+                context.Response.Redirect("/Cocinero/Perfil");
                 return;
             }
 

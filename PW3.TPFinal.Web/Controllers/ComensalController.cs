@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Servicios.Contratos;
+using PW3.TPFinal.Web.Filters;
 
 namespace PW3.TPFinal.Web.Controllers
 {
+    [EsComensal]
     public class ComensalController : Controller
     {
         private readonly ILogger<ComensalController> Logger;
