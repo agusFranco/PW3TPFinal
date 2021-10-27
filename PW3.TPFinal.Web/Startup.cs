@@ -50,6 +50,7 @@ namespace PW3.TPFinal.Web
             services.AddScoped<EsCocinero>();
             services.AddScoped<EsComensal>();
             services.AddScoped<NoEstaLogeado>();
+            services.AddScoped<Logeado>();
 
             // Configuro Repositorios
             services.AddScoped<IEventoRepositorio, EventoRepositorio>();

@@ -10,7 +10,6 @@ using PW3.TPFinal.Web.Filters;
 
 namespace PW3.TPFinal.Web.Controllers
 {
-    [NoEstaLogeado]
     public class UsuarioController : Controller
     {
         private readonly ILogger<UsuarioController> Logger;
@@ -30,6 +29,7 @@ namespace PW3.TPFinal.Web.Controllers
         }
 
         [HttpPost]
+        [NoEstaLogeado]
         public IActionResult Registrar(RegistrarUsuarioModel modelo)
         {
             if (!ModelState.IsValid)
@@ -50,12 +50,23 @@ namespace PW3.TPFinal.Web.Controllers
             return this.Redirigir(resultado.Dato.Perfil);
         }
 
+        [NoEstaLogeado]
         public IActionResult Ingresar()
         {
             return View();
         }
 
+
+        [Logeado]
+        public IActionResult Salir()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("Index", "Evento");
+        }
+
         [HttpPost]
+        [NoEstaLogeado]
         public IActionResult Ingresar(IngresarUsuarioModel modelo)
         {
             if (!ModelState.IsValid)
