@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Servicios.Contratos;
+using PW3.TPFinal.Web.Extensiones;
 using PW3.TPFinal.Web.Filters;
+using System.Collections.Generic;
 
 namespace PW3.TPFinal.Web.Controllers
 {
@@ -28,7 +31,9 @@ namespace PW3.TPFinal.Web.Controllers
         [Route("/Comensal/Reservas")]
         public IActionResult Reservas()
         {
-            return View();
+            Usuario comensal = HttpContext.Session.ObtenerUsuario();
+            IList<Evento> reservas  = this.ComensalServicio.ObtenerReservas(comensal.IdUsuario);
+            return View(reservas);
         }
 
         public IActionResult Comentarios()
