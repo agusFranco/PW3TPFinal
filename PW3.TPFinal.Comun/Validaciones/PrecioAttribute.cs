@@ -8,7 +8,7 @@ namespace PW3.TPFinal.Comun.Validaciones
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (value is decimal && (decimal)value >= 0.00M)
+            if (value is decimal && (decimal)value > 0.00M)
             {
                 return ValidationResult.Success;
             }

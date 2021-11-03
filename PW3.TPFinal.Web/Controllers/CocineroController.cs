@@ -55,6 +55,7 @@ namespace PW3.TPFinal.Web.Controllers
         {
             return View(this.ObtenerNuevoEventoModel());
         }
+
         [HttpPost]
         public IActionResult Eventos(AgregarEventoModel modelo)
         {
