@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Comun.Resultado;
@@ -15,16 +19,19 @@ namespace PW3.TPFinal.Servicios
         private readonly IRecetaRepositorio RecetaRepositorio;
         private readonly ITipoRecetaRepositorio TipoRecetaRepositorio;
         private readonly IEventoRepositorio EventoRepositorio;
+        private readonly IHostingEnvironment HostingEnvironment;
         private readonly ILogger<CocineroServicio> Logger;
 
         public CocineroServicio(IRecetaRepositorio recetaRepositorio,
                                 ITipoRecetaRepositorio tipoRecetaRepositorio,
                                 IEventoRepositorio eventoRepositorio,
+                                IHostingEnvironment hostingEnvironment,
                                 ILogger<CocineroServicio> logger)
         {
             this.RecetaRepositorio = recetaRepositorio;
             this.TipoRecetaRepositorio = tipoRecetaRepositorio;
             this.EventoRepositorio = eventoRepositorio;
+            this.HostingEnvironment = hostingEnvironment;
             this.Logger = logger;
         }
 
@@ -66,6 +73,7 @@ namespace PW3.TPFinal.Servicios
             try
             {
                 Evento nuevo = new Evento();
+
                 nuevo.IdCocinero = modelo.IdCocinero;
                 nuevo.Nombre = modelo.Nombre;
                 nuevo.Fecha = modelo.Fecha;
@@ -74,11 +82,13 @@ namespace PW3.TPFinal.Servicios
                 nuevo.Precio = modelo.Precio;
                 nuevo.Estado = 1;
                 //nuevo.Descripcion = modelo.Descripcion;
-                nuevo.Foto = "ASD";
-                nuevo.EventosReceta = new List<EventosReceta>() { new EventosReceta() { IdReceta = modelo.RecetasPropuestas.First() } };
+                nuevo.Foto = $"{Guid.NewGuid()}{Path.GetExtension(modelo.Foto.FileName)}";
+                nuevo.EventosReceta = modelo.RecetasPropuestas.Select(x => new EventosReceta() { IdReceta = x }).ToList();
 
                 this.EventoRepositorio.Agregar(nuevo);
                 this.EventoRepositorio.Guardar();
+
+                this.GuardarFoto(modelo.Foto, nuevo.Foto);
 
                 resultado.Success = true;
                 resultado.Mensaje = "Evento guardado correctamente.";
@@ -102,6 +112,20 @@ namespace PW3.TPFinal.Servicios
         public List<Receta> ObtenerRecetasPorIdCocinero(int idCocinero)
         {
             return this.RecetaRepositorio.ObtenerPorIdCocinero(idCocinero).ToList();
+        }
+
+        private Task GuardarFoto(IFormFile foto, string fotoId)
+        {
+            string fotos = Path.Combine(this.HostingEnvironment.ContentRootPath, "Fotos");
+
+            Directory.CreateDirectory(fotos);
+
+            string filePath = Path.Combine(fotos, fotoId);
+
+            using (Stream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+            {
+               return foto.CopyToAsync(fileStream);
+            }
         }
     }
 }
