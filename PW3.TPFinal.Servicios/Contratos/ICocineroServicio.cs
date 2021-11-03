@@ -9,6 +9,8 @@ namespace PW3.TPFinal.Servicios.Contratos
     {
         Resultado<Receta> AgregarReceta(AgregarRecetaModel modelo);
 
+        Resultado<Evento> AgregarEvento(AgregarEventoModel modelo);
+
         List<TipoReceta> ObtenerTiposDeReceta();
 
         List<Receta> ObtenerRecetasPorIdCocinero(int idCocinero);

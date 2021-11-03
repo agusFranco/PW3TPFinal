@@ -56,14 +56,25 @@ namespace PW3.TPFinal.Web.Controllers
             return View(this.ObtenerNuevoEventoModel());
         }
         [HttpPost]
-        public IActionResult Eventos(NuevoEventoModel modelo)
+        public IActionResult Eventos(AgregarEventoModel modelo)
         {
             if (!ModelState.IsValid)
             {
                 return View(this.ObtenerNuevoEventoModel(modelo));
             }
 
-            return View(this.ObtenerNuevoEventoModel());
+            modelo.IdCocinero = HttpContext.Session.ObtenerIdUsuario();
+
+            var resultado = this.CocineroServicio.AgregarEvento(modelo);
+
+            TempData["Mensaje"] = resultado.Mensaje;
+
+            if (!resultado.Success)
+            {
+                return View(this.ObtenerNuevoEventoModel(modelo));
+            }
+
+            return RedirectToAction("Perfil", "Cocinero");
         }
 
         public IActionResult Perfil()
@@ -99,9 +110,9 @@ namespace PW3.TPFinal.Web.Controllers
             return modelo;
         }
 
-        private NuevoEventoModel ObtenerNuevoEventoModel(NuevoEventoModel modelo = null)
+        private AgregarEventoModel ObtenerNuevoEventoModel(AgregarEventoModel modelo = null)
         {
-            modelo ??= new NuevoEventoModel();
+            modelo ??= new AgregarEventoModel();
 
             modelo.Recetas = this.ObtenerRecetas();
 

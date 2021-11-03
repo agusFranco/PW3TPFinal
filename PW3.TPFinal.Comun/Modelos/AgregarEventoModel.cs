@@ -7,7 +7,7 @@ using PW3.TPFinal.Comun.Validaciones;
 
 namespace PW3.TPFinal.Comun.Modelos
 {
-    public class NuevoEventoModel
+    public class AgregarEventoModel
     {
 
         [Required(ErrorMessage = "El Nombre es requerido.")]
@@ -36,6 +36,8 @@ namespace PW3.TPFinal.Comun.Modelos
 
         [Required(ErrorMessage = "La Foto es requerida.")]
         public IFormFile Foto { get; set; }
+
+        public int IdCocinero { get; set; }
 
         public List<SelectListItem> Recetas { get; set; }
     }

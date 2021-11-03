@@ -7,13 +7,13 @@ namespace PW3.TPFinal.Comun.Validaciones
         public string GetErrorMessage() => $"El Precio es invalido.";
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {           
-            if (!decimal.TryParse(value as string, out decimal result) || result <= 0)
+        {
+            if (value is decimal && (decimal)value >= 0.00M)
             {
-                return new ValidationResult(GetErrorMessage());
+                return ValidationResult.Success;
             }
 
-            return ValidationResult.Success;
+            return new ValidationResult(GetErrorMessage());
         }
     }
 }
