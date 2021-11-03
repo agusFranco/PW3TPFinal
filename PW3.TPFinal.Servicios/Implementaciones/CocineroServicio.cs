@@ -32,7 +32,6 @@ namespace PW3.TPFinal.Servicios
             try
             {
                 Receta nueva = new Receta();
-
                 nueva.IdCocinero = modelo.IdCocinero;
                 nueva.Nombre = modelo.Nombre;
                 nueva.Descripcion = modelo.Descripcion;
@@ -60,6 +59,11 @@ namespace PW3.TPFinal.Servicios
         public List<TipoReceta> ObtenerTiposDeReceta()
         {
             return this.TipoRecetaRepositorio.Obtener().ToList();
+        }
+
+        public List<Receta> ObtenerRecetasPorIdCocinero(int idCocinero)
+        {
+            return this.RecetaRepositorio.ObtenerPorIdCocinero(idCocinero).ToList();
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Servicios.Contratos;
+using PW3.TPFinal.Web.Extensiones;
 using PW3.TPFinal.Web.Filters;
 
 namespace PW3.TPFinal.Web.Controllers
@@ -36,6 +37,8 @@ namespace PW3.TPFinal.Web.Controllers
                 return View(this.ObtenerAgregarRecetaModel(modelo));
             }
 
+            modelo.IdCocinero = HttpContext.Session.ObtenerIdUsuario();
+
             var resultado = this.CocineroServicio.AgregarReceta(modelo);
 
             TempData["Mensaje"] = resultado.Mensaje;
@@ -43,14 +46,24 @@ namespace PW3.TPFinal.Web.Controllers
             if (!resultado.Success)
             {
                 return View(this.ObtenerAgregarRecetaModel(modelo));
-            }      
+            }
 
             return RedirectToAction("Perfil", "Cocinero");
         }
 
         public IActionResult Eventos()
         {
-            return View();
+            return View(this.ObtenerNuevoEventoModel());
+        }
+        [HttpPost]
+        public IActionResult Eventos(NuevoEventoModel modelo)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(this.ObtenerNuevoEventoModel(modelo));
+            }
+
+            return View(this.ObtenerNuevoEventoModel());
         }
 
         public IActionResult Perfil()
@@ -70,11 +83,27 @@ namespace PW3.TPFinal.Web.Controllers
                                                     .ToList() ?? new List<SelectListItem>();
         }
 
+        private List<SelectListItem> ObtenerRecetas()
+        {
+            return this.CocineroServicio.ObtenerRecetasPorIdCocinero(HttpContext.Session.ObtenerIdUsuario())?
+                                                    .Select(x => new SelectListItem() { Text = x.Nombre, Value = x.IdReceta.ToString() })?
+                                                    .ToList() ?? new List<SelectListItem>();
+        }
+
         private AgregarRecetaModel ObtenerAgregarRecetaModel(AgregarRecetaModel modelo = null)
         {
             modelo ??= new AgregarRecetaModel();
 
             modelo.TipoRecetas = this.ObtenerTipoRecetas();
+
+            return modelo;
+        }
+
+        private NuevoEventoModel ObtenerNuevoEventoModel(NuevoEventoModel modelo = null)
+        {
+            modelo ??= new NuevoEventoModel();
+
+            modelo.Recetas = this.ObtenerRecetas();
 
             return modelo;
         }

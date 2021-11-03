@@ -1,4 +1,5 @@
 ﻿@using PW3.TPFinal.Comun.Modelos;
+@model NuevoEventoModel;
 
 @{
     Layout = "Cocinero/_Cocinero";
@@ -6,7 +7,86 @@
 }
 <section class="py-10">
     <div class="container">
-        <h1 class="text-uppercase font-weight-bold">EVENTOS</h1>
+        <h1 class="text-uppercase font-weight-bold">NUEVO EVENTO</h1>
 
+        <form asp-action="Eventos" asp-controller="Cocinero" enctype="multipart/form-data" method="post" class="mt-5">
+            <div class="row">
+                @*    Si hubo un error al guardar el usuario, muestro mensaje*@
+                @{ if (!string.IsNullOrWhiteSpace(ViewBag.Mensaje as string))
+                    {
+                        <div class="col-lg-12">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                ViewBag.Mensaje
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    }
+                }
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label asp-for="Nombre">Nombre del Evento</label>
+                        <input type="text" asp-for="Nombre" class="form-control border-0 bg-smoke">
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Fecha">Fecha del Evento</label>
+                        <input type="date" asp-for="Fecha" class="form-control border-0 bg-smoke"
+                               value="@DateTime.Today.Date.ToString("yyyy-MM-dd")"
+                               min="@DateTime.Today.Date.ToString("yyyy-MM-dd")"
+                               max="@DateTime.Today.Date.AddDays(30).ToString("yyyy-MM-dd")">
+                        <span asp-validation-for="Fecha" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Descripcion">Descripcion</label>
+                        <input type="text" asp-for="Descripcion" class="form-control border-0 bg-smoke">
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Ubicacion">Ubicacion</label>
+                        <input type="text" asp-for="Ubicacion" class="form-control border-0 bg-smoke">
+                        <span asp-validation-for="Ubicacion" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Cantidad">Cantidad de Comensales</label>
+                        <input type="number" asp-for="Cantidad" class="form-control border-0 bg-smoke">
+                        <span asp-validation-for="Cantidad" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Precio">Precio</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-gray-dark text-white border-0">$</span>
+                            <input type="number" asp-for="Precio" class="form-control border-0 bg-smoke" min="0.00" max="10000.00" step="0.01">
+                        </div>
+                        <span asp-validation-for="Precio" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="RecetasPropuestas">Seleccione las recetas:</label>
+                        <select asp-for="RecetasPropuestas" asp-items="Model.Recetas" multiple="multiple" class="form-control border-0 bg-smoke form-select"></select>
+                        <span asp-validation-for="RecetasPropuestas" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <span asp-validation-for="RecetasPropuestas" class="text-danger"></span>
+                        <label asp-for="Foto" class="form-label">Seleccione Foto: </label>
+                        <input class="form-control" type="file" name="Foto" asp-for="Foto" id="Foto">
+                    </div>
+                    <div class="mb-3">
+
+                    </div>
+
+                </div>
+                <div class="text-center text-md-start text-lg-left">
+                    <button type="submit" class="btn btn-primary text-uppercase">
+                        GUARDAR
+                    </button>
+                </div>
+        </form>
     </div>
 </section>

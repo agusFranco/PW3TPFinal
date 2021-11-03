@@ -5,10 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace PW3.TPFinal.Comun.Modelos
 {
     public class AgregarRecetaModel
-    {       
-        [Required]
-        public int IdCocinero { get; set; }
-
+    {
         [Required(ErrorMessage = "Nombre es requerido.")]
         public string Nombre { get; set; }
 
@@ -23,6 +20,8 @@ namespace PW3.TPFinal.Comun.Modelos
 
         [Required(ErrorMessage = "El Tipo es requerido.")]
         public int IdTipoReceta { get; set; }
+
+        public int IdCocinero { get; set; }
 
         public List<SelectListItem> TipoRecetas { get; set; }
     }

@@ -57,5 +57,10 @@ namespace PW3.TPFinal.Web.Extensiones
 
             return (TipoUsuario)perfil == TipoUsuario.Cocinero;
         }
+
+        public static int ObtenerIdUsuario(this ISession session)
+        {            
+            return ObtenerUsuario(session).IdUsuario;            
+        }
     }
 }
