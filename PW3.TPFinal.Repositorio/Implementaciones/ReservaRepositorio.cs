@@ -1,4 +1,5 @@
-﻿using PW3.TPFinal.Repositorio.Contratos;
+﻿using Microsoft.EntityFrameworkCore;
+using PW3.TPFinal.Repositorio.Contratos;
 using PW3.TPFinal.Repositorio.Data;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace PW3.TPFinal.Repositorio.Implementaciones
         {
         }
 
-        public IList<Reserva> ObtenerReservas(int idUsuario)
+        public List<Reserva> ObtenerReservas(int idUsuario)
         {
             var reservas = this.Set.Where(x => x.IdComensal == idUsuario).ToList();
             return reservas;

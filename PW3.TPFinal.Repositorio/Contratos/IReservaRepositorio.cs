@@ -9,6 +9,6 @@ namespace PW3.TPFinal.Repositorio.Contratos
 {
     public interface IReservaRepositorio : IBaseRepositorio<Reserva, int>
     {
-        IList<Reserva> ObtenerReservas(int idUsuario);
+        List<Reserva> ObtenerReservas(int idUsuario);
     }
 }

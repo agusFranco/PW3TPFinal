@@ -5,6 +5,6 @@ namespace PW3.TPFinal.Servicios.Contratos
 {
     public interface IComensalServicio
     {
-        IList<Evento> ObtenerReservas(int idUsuario);
+        List<Evento> ObtenerReservas(int idUsuario);
     }
 }
