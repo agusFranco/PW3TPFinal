@@ -21,7 +21,7 @@ namespace PW3.TPFinal.Web.Controllers
 
         public IActionResult Index()
         {
-            IList<Evento> eventos = _eventoServicio.ObtenerTodos();
+            IList<Evento> eventos = _eventoServicio.ObtenerUltimosSeisConAlMenosUnComentario();
             return View(eventos);
         }      
 
