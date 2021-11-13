@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Modelos;
+using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Servicios.Contratos;
 using PW3.TPFinal.Web.Extensiones;
 using PW3.TPFinal.Web.Filters;
@@ -80,7 +81,24 @@ namespace PW3.TPFinal.Web.Controllers
 
         public IActionResult Perfil()
         {
-            return View();
+            // Mandar datos del cocinero
+            int idCocinero = HttpContext.Session.ObtenerIdUsuario();
+            Usuario cocinero = this.CocineroServicio.ObtenerDatosDelCocinero(idCocinero);
+
+            // Mandar listado de recetas
+            IList<Receta> recetas = this.CocineroServicio.ObtenerRecetasPorIdCocinero(idCocinero);
+
+            // Mandar listado de eventos
+            IList<Evento> eventos = this.CocineroServicio.ObtenerEventosPorIdCocinero(idCocinero);
+
+            PerfilCocineroViewModel perfilCocineroViewModel = new PerfilCocineroViewModel
+            {
+                Cocinero = cocinero,
+                Recetas = recetas,
+                Eventos = eventos
+            };
+
+            return View(perfilCocineroViewModel);
         }
 
         public IActionResult Cancelacion()

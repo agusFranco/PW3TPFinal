@@ -13,4 +13,8 @@
     <Folder Include="Helpers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PW3.TPFinal.Repositorio\PW3.TPFinal.Repositorio.csproj" />
+  </ItemGroup>
+
 </Project>

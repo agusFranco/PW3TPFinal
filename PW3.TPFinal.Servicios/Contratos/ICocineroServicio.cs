@@ -14,5 +14,7 @@ namespace PW3.TPFinal.Servicios.Contratos
         List<TipoReceta> ObtenerTiposDeReceta();
 
         List<Receta> ObtenerRecetasPorIdCocinero(int idCocinero);
+        Usuario ObtenerDatosDelCocinero(int idCocinero);
+        IList<Evento> ObtenerEventosPorIdCocinero(int idCocinero);
     }
 }

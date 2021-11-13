@@ -11,6 +11,11 @@ namespace PW3.TPFinal.Repositorio.Implementaciones
         {
         }
 
+        public IList<Evento> ObtenerEventosPorIdCocinero(int idCocinero)
+        {
+            return Set.Where(evento => evento.IdCocinero == idCocinero).ToList();
+        }
+
         public IList<Evento> ObtenerUltimosSeisConAlMenosUnComentario()
         {
             return Set.Where( evento =>

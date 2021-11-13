@@ -6,5 +6,6 @@ namespace PW3.TPFinal.Repositorio.Contratos
     public interface IEventoRepositorio : IBaseRepositorio<Evento, int>
     {
         IList<Evento> ObtenerUltimosSeisConAlMenosUnComentario();
+        IList<Evento> ObtenerEventosPorIdCocinero(int idCocinero);
     }
 }
