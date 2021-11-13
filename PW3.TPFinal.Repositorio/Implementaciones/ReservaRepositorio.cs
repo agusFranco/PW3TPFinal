@@ -17,7 +17,9 @@ namespace PW3.TPFinal.Repositorio.Implementaciones
 
         public List<Reserva> ObtenerReservas(int idUsuario)
         {
-            var reservas = this.Set.Where(x => x.IdComensal == idUsuario).ToList();
+            var reservas = this.Set.Include(v => v.IdEventoNavigation)
+                                   .Where(x => x.IdComensal == idUsuario)
+                                   .ToList();
             return reservas;
         }
     }

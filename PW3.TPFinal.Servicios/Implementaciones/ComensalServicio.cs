@@ -19,15 +19,11 @@ namespace PW3.TPFinal.Servicios
             this.EventoRepositorio = eventoRepositorio;
         }
 
-        public List<Evento> ObtenerReservas(int idUsuario)
+        public List<Reserva> ObtenerReservas(int idUsuario)
         {
             List<Reserva> reservas  = this.ReservaRepositorio.ObtenerReservas(idUsuario);
-            List<Evento> eventos = new();
-            foreach (Reserva r in reservas)
-            {
-                eventos.Add(this.EventoRepositorio.Obtener(r.IdEvento));
-            }
-            return eventos;
+          
+            return reservas;
         }
     }
 }
