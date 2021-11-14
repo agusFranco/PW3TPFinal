@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PW3.TPFinal.Repositorio.Contratos;
 using PW3.TPFinal.Repositorio.Data;
 
@@ -13,7 +14,8 @@ namespace PW3.TPFinal.Repositorio.Implementaciones
 
         public IList<Receta> ObtenerPorIdCocinero(int idCocinero)
         {
-            return this.Set.Where(x => x.IdCocinero == idCocinero).ToList();
+            return this.Set.Include("IdTipoRecetaNavigation")
+                .Where(x => x.IdCocinero == idCocinero).ToList();
         }
     }
 }

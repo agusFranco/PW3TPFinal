@@ -1,5 +1,5 @@
 ﻿@using PW3.TPFinal.Repositorio.Data
-@model List<Evento> 
+@model List<Reserva> 
 
 @{
     Layout = "Comensal/_Comensal";
@@ -8,14 +8,38 @@
 <section class="py-10">
     <div class="container">
         <h1 class="text-uppercase font-weight-bold">RESERVAS</h1>
+        <div class="row">
+            @foreach (Reserva r in Model)
+            {
+                {
+                    string str = "Pendiente";
+                    string color = "bg-black";
+                    if (@r.IdEventoNavigation.Estado == 1)
+                    {
+                        str = "Realizado";
+                        color = "bg-black";
+                    }else if (@r.IdEventoNavigation.Estado == 2)
+                    {
+                        str = "Cancelado";
+                        color = "bg-gray-color";
+                    }
 
-        @foreach (Evento e in Model)
-        {
-            <p>Nombre Evento: @e.Nombre</p>
-            <p>Estado: @e.Estado</p>
-            <p>Fecha: @e.Fecha</p>
-        }
-
-
+                    <div class="col-lg-4 mb-2">
+                        <div class="card">
+                            <div class="card-header @color text-white h-50">
+                                <h5>Nombre Evento: @r.IdEventoNavigation.Nombre</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <span>Estado: @str                              
+                                    </span>
+                                </p>
+                                <p class="card-text"><span>Hora: @r.IdEventoNavigation.Fecha</span> </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
     </div>
 </section>

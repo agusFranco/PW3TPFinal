@@ -40,7 +40,7 @@ namespace PW3.TPFinal.Web.Controllers
         public IActionResult Reservas()
         {
             Usuario comensal = HttpContext.Session.ObtenerUsuario();
-            IList<Evento> reservas  = this.ComensalServicio.ObtenerReservas(comensal.IdUsuario);
+            IList<Reserva> reservas  = this.ComensalServicio.ObtenerReservas(comensal.IdUsuario);
             return View(reservas);
         }
 

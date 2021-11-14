@@ -21,14 +21,17 @@ namespace PW3.TPFinal.Servicios
         private readonly ITipoRecetaRepositorio TipoRecetaRepositorio;
         private readonly IEventoRepositorio EventoRepositorio;
         private readonly IHostingEnvironment HostingEnvironment;
+        private readonly IUsuarioRepositorio UsuarioRepositorio;
         private readonly ILogger<CocineroServicio> Logger;
 
         public CocineroServicio(IRecetaRepositorio recetaRepositorio,
                                 ITipoRecetaRepositorio tipoRecetaRepositorio,
                                 IEventoRepositorio eventoRepositorio,
                                 IHostingEnvironment hostingEnvironment,
-                                ILogger<CocineroServicio> logger)
+                                ILogger<CocineroServicio> logger,
+                                IUsuarioRepositorio usuarioRepositorio)
         {
+            this.UsuarioRepositorio = usuarioRepositorio;
             this.RecetaRepositorio = recetaRepositorio;
             this.TipoRecetaRepositorio = tipoRecetaRepositorio;
             this.EventoRepositorio = eventoRepositorio;
@@ -127,6 +130,16 @@ namespace PW3.TPFinal.Servicios
             {
                return foto.CopyToAsync(fileStream);
             }
+        }
+
+        public Usuario ObtenerDatosDelCocinero(int idCocinero)
+        {
+            return this.UsuarioRepositorio.Obtener(idCocinero);
+        }
+
+        public IList<Evento> ObtenerEventosPorIdCocinero(int idCocinero)
+        {
+            return this.EventoRepositorio.ObtenerEventosPorIdCocinero(idCocinero);
         }
     }
 }
