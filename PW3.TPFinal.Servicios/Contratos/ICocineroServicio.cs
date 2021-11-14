@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Comun.Resultado;
 using PW3.TPFinal.Repositorio.Data;
+using PW3.TPFinal.Repositorio.Modelos;
 
 namespace PW3.TPFinal.Servicios.Contratos
 {
@@ -14,7 +14,9 @@ namespace PW3.TPFinal.Servicios.Contratos
         List<TipoReceta> ObtenerTiposDeReceta();
 
         List<Receta> ObtenerRecetasPorIdCocinero(int idCocinero);
+
         Usuario ObtenerDatosDelCocinero(int idCocinero);
+
         IList<Evento> ObtenerEventosPorIdCocinero(int idCocinero);
     }
 }

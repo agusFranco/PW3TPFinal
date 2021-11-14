@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PW3.TPFinal.Comun.Modelos
+namespace PW3.TPFinal.Repositorio.Modelos
 {
     public class IngresarUsuarioModel
     {       

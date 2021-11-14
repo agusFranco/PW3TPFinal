@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Repositorio.Data;
+using PW3.TPFinal.Repositorio.Modelos;
 using PW3.TPFinal.Servicios.Contratos;
 using PW3.TPFinal.Web.Extensiones;
 using PW3.TPFinal.Web.Filters;
-using System.Collections.Generic;
 
 namespace PW3.TPFinal.Web.Controllers
 {
@@ -40,7 +40,7 @@ namespace PW3.TPFinal.Web.Controllers
         public IActionResult Reservas()
         {
             Usuario comensal = HttpContext.Session.ObtenerUsuario();
-            IList<Reserva> reservas  = this.ComensalServicio.ObtenerReservas(comensal.IdUsuario);
+            IList<Reserva> reservas = this.ComensalServicio.ObtenerReservas(comensal.IdUsuario);
             return View(reservas);
         }
 

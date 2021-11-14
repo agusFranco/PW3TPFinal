@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Comun.Resultado;
 using PW3.TPFinal.Repositorio.Data;
+using PW3.TPFinal.Repositorio.Modelos;
 
 namespace PW3.TPFinal.Servicios.Contratos
 {

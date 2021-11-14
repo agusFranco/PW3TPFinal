@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
-using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Comun.Resultado;
 using PW3.TPFinal.Repositorio.Contratos;
 using PW3.TPFinal.Repositorio.Data;
+using PW3.TPFinal.Repositorio.Modelos;
 using PW3.TPFinal.Servicios.Contratos;
 
 namespace PW3.TPFinal.Servicios
@@ -34,7 +34,7 @@ namespace PW3.TPFinal.Servicios
             {
                 var existente = this.UsuarioRepositorio.ObtenerPorEmail(modelo.Email);
 
-                if(existente != null)
+                if (existente != null)
                 {
                     resultado.Success = false;
                     resultado.Mensaje = "El Email ya esta en uso.";
@@ -45,7 +45,7 @@ namespace PW3.TPFinal.Servicios
 
                 nuevo.Nombre = modelo.Nombre;
                 nuevo.Email = modelo.Email;
-                nuevo.Password = modelo.Password;       
+                nuevo.Password = modelo.Password;
                 nuevo.Perfil = (int)modelo.Perfil;
                 nuevo.FechaRegistracion = DateTime.UtcNow;
 

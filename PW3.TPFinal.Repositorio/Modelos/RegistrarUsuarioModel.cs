@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using PW3.TPFinal.Comun.Enums;
 
-namespace PW3.TPFinal.Comun.Modelos
+namespace PW3.TPFinal.Repositorio.Modelos
 {
     public class RegistrarUsuarioModel
     {

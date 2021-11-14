@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PW3.TPFinal.Comun.Validaciones;
 
-namespace PW3.TPFinal.Comun.Modelos
+namespace PW3.TPFinal.Repositorio.Modelos
 {
     public class AgregarEventoModel
     {
@@ -13,7 +13,7 @@ namespace PW3.TPFinal.Comun.Modelos
         [Required(ErrorMessage = "El Nombre es requerido.")]
         public string Nombre { get; set; }
 
-        [Required(ErrorMessage = "La Fecha es requerida.")]        
+        [Required(ErrorMessage = "La Fecha es requerida.")]
         [DataType(DataType.Date)]
         public DateTime Fecha { get; set; }
 

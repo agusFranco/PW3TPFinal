@@ -1,11 +1,7 @@
-﻿using PW3.TPFinal.Repositorio.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using PW3.TPFinal.Repositorio.Data;
 
-namespace PW3.TPFinal.Comun.Modelos
+namespace PW3.TPFinal.Repositorio.Modelos
 {
     public class PerfilCocineroViewModel
     {

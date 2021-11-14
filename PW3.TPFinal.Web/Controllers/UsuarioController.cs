@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Enums;
-using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Repositorio.Data;
+using PW3.TPFinal.Repositorio.Modelos;
 using PW3.TPFinal.Servicios.Contratos;
 using PW3.TPFinal.Web.Extensiones;
 using PW3.TPFinal.Web.Filters;
