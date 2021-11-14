@@ -1,7 +1,9 @@
-﻿using PW3.TPFinal.Repositorio.Contratos;
-using PW3.TPFinal.Repositorio.Data;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using PW3.TPFinal.Comun.Enums;
+using PW3.TPFinal.Repositorio.Contratos;
+using PW3.TPFinal.Repositorio.Data;
 
 namespace PW3.TPFinal.Repositorio.Implementaciones
 {
@@ -13,15 +15,23 @@ namespace PW3.TPFinal.Repositorio.Implementaciones
 
         public IList<Evento> ObtenerUltimosSeisConAlMenosUnComentario()
         {
-            return Set.Where( evento =>
-               evento.Estado == 1 &&
-               evento.Calificaciones.Any(calificacion => calificacion.Comentarios.Length > 0)
+            return Set.Where(evento =>
+              evento.Estado == (int)EstadoDeEvento.Finalizado &&
+              evento.Calificaciones.Any(calificacion => calificacion.Comentarios.Length > 0)
             )
-            .OrderBy( evento =>
-                evento.Fecha
+            .OrderBy(evento =>
+               evento.Fecha
             )
             .Take(6)
             .ToList();
+        }
+
+        public IList<Evento> ObtenerDisponibles()
+        {
+            return this.Set.Include(x => x.Reservas)
+                           .Where(x => x.Estado == (int)EstadoDeEvento.Pendiente &&
+                                       x.Reservas.Sum(d => d.CantidadComensales) <= x.CantidadComensales)
+                           .ToList();
         }
     }
 }

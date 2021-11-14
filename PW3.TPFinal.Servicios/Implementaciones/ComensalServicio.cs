@@ -19,6 +19,11 @@ namespace PW3.TPFinal.Servicios
             this.EventoRepositorio = eventoRepositorio;
         }
 
+        public IList<Evento> ObtenerEventosDisponibles()
+        {
+           return this.EventoRepositorio.ObtenerDisponibles();
+        }
+
         public List<Evento> ObtenerReservas(int idUsuario)
         {
             List<Reserva> reservas  = this.ReservaRepositorio.ObtenerReservas(idUsuario);

@@ -8,5 +8,32 @@
     <div class="container">
         <h1 class="text-uppercase font-weight-bold">RESERVA</h1>
 
+        @foreach (var evento in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-5">
+                <div class="card card-hover">
+                    <a href="single-package-right-sidebar.html" class="position-relative">
+                        <img class="card-img-top" src="@Url.Content("~/template/img/home/deal/deal-01.jpg")" alt="Card image cap">
+                    </a>
+                    <div class="card-body px-4">
+                        <h5>
+                            <a href="single-package-right-sidebar.html" class="card-title text-uppercase"> @evento.Nombre</a>
+                        </h5>
+                        <p class="mb-5">
+                            @evento.CantidadComensales
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="mb-0 text-capitalize">Precio</p>
+                                <h3 class="text-primary">@evento.Precio</h3>
+                            </div>
+                            <div>
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#inquiry" class="btn btn-xs btn-outline-secondary text-uppercase">Inquiry</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </section>

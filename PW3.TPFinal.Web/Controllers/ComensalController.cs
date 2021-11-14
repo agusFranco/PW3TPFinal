@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Servicios.Contratos;
 using PW3.TPFinal.Web.Extensiones;
@@ -23,6 +24,13 @@ namespace PW3.TPFinal.Web.Controllers
         }
 
         public IActionResult Reserva()
+        {
+            var eventos = this.ComensalServicio.ObtenerEventosDisponibles();
+            return View(eventos);
+        }
+
+        [HttpPost]
+        public IActionResult Reserva(AgregarReservaModel modelo)
         {
             return View();
         }

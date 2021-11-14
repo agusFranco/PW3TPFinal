@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using PW3.TPFinal.Comun.Enums;
 using PW3.TPFinal.Comun.Modelos;
 using PW3.TPFinal.Comun.Resultado;
 using PW3.TPFinal.Repositorio.Contratos;
@@ -80,7 +81,7 @@ namespace PW3.TPFinal.Servicios
                 nuevo.Ubicacion = modelo.Ubicacion;
                 nuevo.CantidadComensales = modelo.Cantidad;
                 nuevo.Precio = modelo.Precio;
-                nuevo.Estado = 1;
+                nuevo.Estado = (int)EstadoDeEvento.Pendiente;
                 //nuevo.Descripcion = modelo.Descripcion;
                 nuevo.Foto = $"{Guid.NewGuid()}{Path.GetExtension(modelo.Foto.FileName)}";
                 nuevo.EventosReceta = modelo.RecetasPropuestas.Select(x => new EventosReceta() { IdReceta = x }).ToList();
