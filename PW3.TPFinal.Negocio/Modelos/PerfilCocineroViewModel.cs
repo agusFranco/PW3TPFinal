@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using PW3.TPFinal.Repositorio.Data;
 
-namespace PW3.TPFinal.Repositorio.Modelos
+namespace PW3.TPFinal.Negocio.Modelos
 {
     public class PerfilCocineroViewModel
     {

@@ -3,9 +3,9 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using PW3.TPFinal.Negocio.Modelos;
+using PW3.TPFinal.Negocio.Servicios.Contratos;
 using PW3.TPFinal.Repositorio.Data;
-using PW3.TPFinal.Repositorio.Modelos;
-using PW3.TPFinal.Servicios.Contratos;
 using PW3.TPFinal.Web.Extensiones;
 using PW3.TPFinal.Web.Filters;
 

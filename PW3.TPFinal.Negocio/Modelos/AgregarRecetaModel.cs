@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace PW3.TPFinal.Repositorio.Modelos
+namespace PW3.TPFinal.Negocio.Modelos
 {
-    public class AgregarReservaModel
+    public class AgregarRecetaModel
     {
         [Required(ErrorMessage = "Nombre es requerido.")]
         public string Nombre { get; set; }

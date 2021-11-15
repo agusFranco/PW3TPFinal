@@ -7,3 +7,7 @@
 <main role="main">
     @RenderBody()
 </main>
+
+@section Scripts {
+    @await RenderSectionAsync("PageScripts", required: false)
+}

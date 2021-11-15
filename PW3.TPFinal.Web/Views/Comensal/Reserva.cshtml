@@ -1,20 +1,20 @@
-﻿@using PW3.TPFinal.Repositorio.Modelos;
-
+﻿@using Newtonsoft.Json;
+@model PW3.TPFinal.Negocio.Modelos.AgregarReservaModel
 @{
     Layout = "Comensal/_Comensal";
     ViewData["Title"] = "Reserva";
 }
-<section class="py-10">
+<section class="py-10 bg-smoke">
     <div class="container">
-        <h1 class="text-uppercase font-weight-bold">RESERVA</h1>
+        <h1 class="text-uppercase font-weight-bold">NUEVA RESERVA</h1>
 
-        @foreach (var evento in Model)
+        @foreach (var evento in Model.Eventos)
         {
             <div class="col-md-6 col-lg-4 mb-5">
                 <div class="card card-hover">
-                    <a href="single-package-right-sidebar.html" class="position-relative">
+                    <div href="single-package-right-sidebar.html" class="position-relative">
                         <img class="card-img-top" src="@Url.Content("~/template/img/home/deal/deal-01.jpg")" alt="Card image cap">
-                    </a>
+                    </div>
                     <div class="card-body px-4">
                         <h5>
                             <a href="single-package-right-sidebar.html" class="card-title text-uppercase"> @evento.Nombre</a>
@@ -28,12 +28,55 @@
                                 <h3 class="text-primary">@evento.Precio</h3>
                             </div>
                             <div>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#inquiry" class="btn btn-xs btn-outline-secondary text-uppercase">Inquiry</a>
+                                <button onclick="abrirNuevaReservaModal(@evento)" class="btn btn-xs btn-outline-secondary text-uppercase">SELECCIONAR</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         }
+
+
+        <!-- Modal -->
+        <div class="modal fade mb-8" id="nuevaReservaModal" tabindex="-1" role="dialog" aria-labelledby="nuevaReservaModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nueva Reserva</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form asp-action="Eventos" asp-controller="Cocinero" enctype="multipart/form-data" method="post" class="mt-5">
+                            <div class="row">
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label asp-for="CantidadComensales">Cantidad de Comensales</label>
+                                        <input type="number" asp-for="CantidadComensales" class="form-control border-0 bg-smoke">
+                                        <span asp-validation-for="CantidadComensales" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="IdReceta">Seleccione las recetas:</label>
+                                        <select asp-for="IdReceta" id="RecetaElegida" class="form-control border-0 bg-smoke form-select"></select>
+                                        <span asp-validation-for="IdReceta" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                <div class="text-center text-md-start text-lg-left">
+                                    <button type="submit" class="btn btn-primary text-uppercase">
+                                        GUARDAR
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
+@section PageScripts {
+    <script type="text/javascript" src="@Url.Content("~/js/paginas/nuevaReserva.js")"></script>
+}

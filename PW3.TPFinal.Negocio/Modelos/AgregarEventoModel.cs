@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PW3.TPFinal.Comun.Validaciones;
 
-namespace PW3.TPFinal.Repositorio.Modelos
+namespace PW3.TPFinal.Negocio.Modelos
 {
     public class AgregarEventoModel
     {

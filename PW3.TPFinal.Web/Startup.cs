@@ -8,9 +8,9 @@ using Microsoft.Extensions.Hosting;
 using PW3.TPFinal.Repositorio.Contratos;
 using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Repositorio.Implementaciones;
-using PW3.TPFinal.Servicios;
-using PW3.TPFinal.Servicios.Contratos;
+using PW3.TPFinal.Negocio.Servicios.Contratos;
 using PW3.TPFinal.Web.Filters;
+using PW3.TPFinal.Negocio.Servicios;
 
 namespace PW3.TPFinal.Web
 {
