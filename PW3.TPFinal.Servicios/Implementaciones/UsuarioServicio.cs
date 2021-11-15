@@ -70,13 +70,11 @@ namespace PW3.TPFinal.Servicios
         public Usuario ValidarUsuario(IngresarUsuarioModel modelo)
         {
             Usuario usuario = this.UsuarioRepositorio.ValidarUsuario(modelo.Email, modelo.Password);
-            if (usuario != null)
-            {
-                if (BCryptNet.Verify(modelo.Email, usuario.Email))
-                {
+            
+            
+            if (usuario == null || !BCryptNet.Verify(modelo.Password, usuario.Password))
                     return usuario;
-                }
-            }
+
             return usuario;
         }
     }
