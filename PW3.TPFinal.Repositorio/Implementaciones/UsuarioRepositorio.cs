@@ -20,7 +20,7 @@ namespace PW3.TPFinal.Repositorio.Implementaciones
 
         public Usuario ValidarUsuario(string email, string password)
         {
-            var usuario = this.Set.FirstOrDefault(u => u.Email == email && u.Password== password);
+            var usuario = this.Set.Where(u => u.Email == email).FirstOrDefault();
             
             return usuario;
         }
