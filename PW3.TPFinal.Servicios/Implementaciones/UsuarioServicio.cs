@@ -7,6 +7,7 @@ using PW3.TPFinal.Repositorio.Contratos;
 using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Repositorio.Modelos;
 using PW3.TPFinal.Servicios.Contratos;
+using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace PW3.TPFinal.Servicios
 {
@@ -45,7 +46,7 @@ namespace PW3.TPFinal.Servicios
 
                 nuevo.Nombre = modelo.Nombre;
                 nuevo.Email = modelo.Email;
-                nuevo.Password = modelo.Password;
+                nuevo.Password = BCryptNet.HashPassword(modelo.Password);
                 nuevo.Perfil = (int)modelo.Perfil;
                 nuevo.FechaRegistracion = DateTime.UtcNow;
 
@@ -68,7 +69,13 @@ namespace PW3.TPFinal.Servicios
 
         public Usuario ValidarUsuario(IngresarUsuarioModel modelo)
         {
-            return this.UsuarioRepositorio.ValidarUsuario(modelo.Email, modelo.Password);
+            Usuario usuario = this.UsuarioRepositorio.ValidarUsuario(modelo.Email, modelo.Password);
+            
+            
+            if (usuario == null || !BCryptNet.Verify(modelo.Password, usuario.Password))
+                    return usuario;
+
+            return usuario;
         }
     }
 }
