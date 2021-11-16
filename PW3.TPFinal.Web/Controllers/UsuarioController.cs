@@ -11,7 +11,7 @@ using PW3.TPFinal.Web.Filters;
 
 namespace PW3.TPFinal.Web.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuarioController : ControllerBase
     {
         private readonly ILogger<UsuarioController> Logger;
         private readonly IUsuarioServicio UsuarioServicio;
@@ -35,6 +35,7 @@ namespace PW3.TPFinal.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.AgregarErrorDelModelState();
                 return View(modelo);
             }
 
@@ -42,9 +43,11 @@ namespace PW3.TPFinal.Web.Controllers
 
             if (!resultado.Success)
             {
-                ViewBag.Mensaje = resultado.Mensaje;
+                this.AgregarError(resultado.Mensaje);
                 return View(modelo);
             }
+
+            this.AgregarSuccess(resultado.Mensaje);
 
             HttpContext.Session.SetUsuario(resultado.Dato);
 
@@ -72,6 +75,7 @@ namespace PW3.TPFinal.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.AgregarErrorDelModelState();
                 return View();
             }
 

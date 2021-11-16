@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Negocio.Modelos;
+using PW3.TPFinal.Negocio.Modelos.Data;
 using PW3.TPFinal.Negocio.Servicios.Contratos;
 using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Web.Extensiones;
@@ -10,7 +12,7 @@ using PW3.TPFinal.Web.Filters;
 namespace PW3.TPFinal.Web.Controllers
 {
     [EsComensal]
-    public class ComensalController : Controller
+    public class ComensalController : ControllerBase
     {
         private readonly ILogger<ComensalController> Logger;
         private readonly IComensalServicio ComensalServicio;
@@ -25,14 +27,31 @@ namespace PW3.TPFinal.Web.Controllers
 
         public IActionResult Reserva()
         {
-            var eventos = this.ComensalServicio.ObtenerEventosDisponibles();
-            return View(eventos);
+            var modelo = this.ObtenerAgregarReservaModel();
+            return View(modelo);
         }
 
         [HttpPost]
         public IActionResult Reserva(AgregarReservaModel modelo)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                this.AgregarErrorDelModelState();
+                return View(this.ObtenerAgregarReservaModel(modelo));
+            }
+
+            modelo.IdComensal = HttpContext.Session.ObtenerIdUsuario();
+
+            var resultado = this.ComensalServicio.AgregarReserva(modelo);
+
+            if (!resultado.Success)
+            {
+                this.AgregarError(resultado.Mensaje);
+                return View(this.ObtenerAgregarReservaModel(modelo));
+            }
+
+            this.AgregarSuccess(resultado.Mensaje);
+            return RedirectToAction("Reservas", "Comensal");
         }
 
         [Route("/Comensal/")]
@@ -47,6 +66,15 @@ namespace PW3.TPFinal.Web.Controllers
         public IActionResult Comentarios()
         {
             return View();
+        }
+
+        private AgregarReservaModel ObtenerAgregarReservaModel(AgregarReservaModel modelo = null)
+        {
+            modelo ??= new AgregarReservaModel();
+
+            modelo.Eventos = this.ComensalServicio.ObtenerEventosDisponibles().Select(x => new EventoRecetasModel(x)).ToList();
+
+            return modelo;
         }
     }
 }

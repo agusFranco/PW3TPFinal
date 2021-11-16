@@ -12,7 +12,7 @@ using PW3.TPFinal.Web.Filters;
 namespace PW3.TPFinal.Web.Controllers
 {
     [EsCocinero]
-    public class CocineroController : Controller
+    public class CocineroController : ControllerBase
     {
         private readonly ILogger<CocineroController> Logger;
         private readonly ICocineroServicio CocineroServicio;

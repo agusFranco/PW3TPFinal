@@ -9,6 +9,8 @@
     <div class="container">
         <h1 class="text-uppercase font-weight-bold">Nueva Receta</h1>
 
+        <partial name="/Views/Shared/_Message_Bar.cshtml" />
+
         <form asp-action="Recetas" asp-controller="Cocinero" method="post">
             <div class="row">
                 @*    Si hubo un error al guardar el usuario, muestro mensaje*@

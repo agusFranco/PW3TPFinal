@@ -1,13 +1,15 @@
 ﻿@using PW3.TPFinal.Negocio.Modelos;
 @model RegistrarUsuarioModel;
 
-@{ 
+@{
     Layout = "Anonimo/_Anonimo";
     ViewData["Title"] = "Registrarse";
 }
 <section class="py-10">
     <div class="container">
         <h1 class="text-uppercase font-weight-bold">Registrarse</h1>
+
+        <partial name="/Views/Shared/_Message_Bar.cshtml" />
 
         <form asp-action="Registrar" asp-controller="Usuario" method="post">
             <div class="row">

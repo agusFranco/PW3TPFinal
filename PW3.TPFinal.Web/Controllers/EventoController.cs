@@ -8,7 +8,7 @@ using PW3.TPFinal.Web.Models;
 
 namespace PW3.TPFinal.Web.Controllers
 {
-    public class EventoController : Controller
+    public class EventoController : ControllerBase
     {
         private readonly ILogger<EventoController> _logger;
         private readonly IEventoServicio _eventoServicio;

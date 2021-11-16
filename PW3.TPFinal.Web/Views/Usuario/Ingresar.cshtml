@@ -8,6 +8,9 @@
 <section class="py-10">
     <div class="container">
         <h1 class="text-uppercase font-weight-bold">Ingresar</h1>
+
+        <partial name="/Views/Shared/_Message_Bar.cshtml" />
+
         <form asp-action="Ingresar" asp-controller="Usuario" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">

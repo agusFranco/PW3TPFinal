@@ -139,7 +139,7 @@ namespace PW3.TPFinal.Negocio.Servicios
 
         public IList<Evento> ObtenerEventosPorIdCocinero(int idCocinero)
         {
-            return this.EventoRepositorio.ObtenerEventosPorIdCocinero(idCocinero);
+            return this.EventoRepositorio.ObtenerPorIdCocinero(idCocinero);
         }
     }
 }

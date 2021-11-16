@@ -13,29 +13,36 @@ namespace PW3.TPFinal.Repositorio.Implementaciones
         {
         }
 
-        public IList<Evento> ObtenerEventosPorIdCocinero(int idCocinero)
+        public IList<Evento> ObtenerPorIdCocinero(int idCocinero)
         {
             return Set.Where(evento => evento.IdCocinero == idCocinero).ToList();
         }
 
+        public Evento ObtenerCompletoPorId(int id)
+        {
+            return this.Set.Include(x => x.Reservas)
+                           .Include(x => x.Calificaciones)
+                           .Include(x => x.EventosReceta)
+                           .Where(x => x.IdEvento == id)
+                           .FirstOrDefault();
+        }
+
         public IList<Evento> ObtenerUltimosSeisConAlMenosUnComentario()
         {
-            return Set.Where(evento =>
-              evento.Estado == (int)EstadoDeEvento.Finalizado &&
-              evento.Calificaciones.Any(calificacion => calificacion.Comentarios.Length > 0)
-            )
-            .OrderBy(evento =>
-               evento.Fecha
-            )
-            .Take(6)
-            .ToList();
+            return Set.Where(evento => evento.Estado == (int)EstadoDeEvento.Finalizado && 
+                                       evento.Calificaciones.Any(calificacion => calificacion.Comentarios.Length > 0))
+                      .OrderBy(evento => evento.Fecha)
+                      .Take(6)
+                      .ToList();
         }
 
         public IList<Evento> ObtenerDisponibles()
         {
             return this.Set.Include(x => x.Reservas)
                            .Where(x => x.Estado == (int)EstadoDeEvento.Pendiente &&
-                                       x.Reservas.Sum(d => d.CantidadComensales) <= x.CantidadComensales)
+                                       x.Reservas.Sum(d => d.CantidadComensales) < x.CantidadComensales)
+                           .Include(x => x.EventosReceta)
+                           .ThenInclude(x => x.IdRecetaNavigation)
                            .ToList();
         }
     }
