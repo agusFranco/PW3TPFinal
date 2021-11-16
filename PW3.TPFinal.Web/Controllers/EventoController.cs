@@ -27,7 +27,7 @@ namespace PW3.TPFinal.Web.Controllers
 
         [Route("/Evento/{id}/Detalle")]
         public IActionResult Detalle(int id)
-        {
+        {            
             var evento = this.EventoServicio.ObtenerPorId(id);
 
             if (evento == null)
