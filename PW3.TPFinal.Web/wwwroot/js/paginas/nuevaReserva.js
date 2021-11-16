@@ -14,6 +14,8 @@ var abrirNuevaReservaModal = function (evento) {
 
     selectElement.empty();
 
+    console.log(evento);
+
     if (evento.Recetas && evento.Recetas.length > 0) {
         evento.Recetas.forEach(x => selectElement.append(new Option(x.Nombre, x.IdReceta)));
     }
