@@ -42,7 +42,7 @@ namespace PW3.TPFinal.Web.Extensiones
         {
             var perfil = session.GetInt32(Constantes.SESSION_PERFIL);
 
-            return (TipoUsuario)perfil;
+            return perfil != null ? (TipoUsuario)perfil : TipoUsuario.Desconocido;
         }
 
         public static bool EsComensal(this ISession session)

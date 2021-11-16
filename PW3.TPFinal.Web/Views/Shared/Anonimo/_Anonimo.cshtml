@@ -1,8 +1,22 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http;
+@using PW3.TPFinal.Web.Extensiones;
+
+@{
     Layout = "_Base";
 }
 
-<partial name="_Anonimo_NavBar.cshtml" />
+@if (Context.Session?.EsComensal() ?? false)
+{
+    <partial name="/Views/Shared/Comensal/_Comensal_NavBar.cshtml" />
+}
+else if (Context.Session?.EsCocinero() ?? false)
+{
+    <partial name="/Views/Shared/Cocinero/_Cocinero_NavBar.cshtml" />
+}
+else
+{
+    <partial name="_Anonimo_NavBar.cshtml" />
+}
 
 <main role="main">
     @RenderBody()
