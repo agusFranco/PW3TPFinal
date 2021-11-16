@@ -120,7 +120,7 @@ namespace PW3.TPFinal.Negocio.Servicios
 
         private Task GuardarFoto(IFormFile foto, string fotoId)
         {
-            string fotos = Path.Combine(this.HostingEnvironment.ContentRootPath, "Fotos");
+            string fotos = Path.Combine(this.HostingEnvironment.WebRootPath, "Fotos");
 
             Directory.CreateDirectory(fotos);
 

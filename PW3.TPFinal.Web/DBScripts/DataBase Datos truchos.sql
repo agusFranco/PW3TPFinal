@@ -87,22 +87,22 @@ SET IDENTITY_INSERT [dbo].[Eventos] ON
 GO
 
 INSERT [dbo].[Eventos] ([IdEvento], [IdCocinero], [Nombre], [Fecha], [CantidadComensales], [Ubicacion], [Foto], [Precio], [Estado]) VALUES 
-(1, 10, N'Evento 1',   CAST(N'2021-12-54T00:00:00.000' AS DateTime), 10, N'Ubicacion', N'469771eb-be1e-4297-8c16-7d572ea5a5b6.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(2, 10, N'Evento 2',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(3, 10, N'Evento 3',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(4, 11, N'Evento 4',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(5, 11, N'Evento 5',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(6, 11, N'Evento 6',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(7, 12, N'Evento 7',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(8, 12, N'Evento 8',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(9, 12, N'Evento 9',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(10, 13, N'Evento 10', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(11, 13, N'Evento 11', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(12, 13, N'Evento 12', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(13, 14, N'Evento 13', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(14, 14, N'Evento 14', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(15, 14, N'Evento 15', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
-(16, 14, N'Evento 16', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'6eec1702-6b2a-46fd-a5df-94d771ff3268.jpg', CAST(1000.00 AS Decimal(18, 2)), 0)
+(1, 10, N'Evento 1',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 10, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 1),
+(2, 10, N'Evento 2',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 1),
+(3, 10, N'Evento 3',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 1),
+(4, 11, N'Evento 4',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 1),
+(5, 11, N'Evento 5',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 1),
+(6, 11, N'Evento 6',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 1),
+(7, 12, N'Evento 7',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
+(8, 12, N'Evento 8',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
+(9, 12, N'Evento 9',   CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
+(10, 13, N'Evento 10', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
+(11, 13, N'Evento 11', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
+(12, 13, N'Evento 12', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
+(13, 14, N'Evento 13', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
+(14, 14, N'Evento 14', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
+(15, 14, N'Evento 15', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 0),
+(16, 14, N'Evento 16', CAST(N'2021-12-05T00:00:00.000' AS DateTime), 20, N'Ubicacion', N'17749e39-c2a0-4877-a393-f8d49d4a8ae9.jpg', CAST(1000.00 AS Decimal(18, 2)), 0)
 GO
 
 SET IDENTITY_INSERT [dbo].[Eventos] OFF
@@ -138,3 +138,53 @@ SET IDENTITY_INSERT [dbo].[EventosRecetas] OFF
 GO
 
 -- FIN EVENTOS RECETAS
+
+--COMENTARIOS
+
+INSERT INTO [dbo].[Calificaciones] ([IdEvento],[IdComensal],[Calificacion],[Comentarios])    
+VALUES
+--(<IdEvento, int,>,<IdComensal, int,>,<Calificacion, int,>,<Comentarios, nvarchar(max),>)
+(1,1,10,'Muy rico!'),
+(1,2,10,'Muy rico!'),
+(1,3,10,'Muy rico!'),
+(1,4,10,'Muy rico!'),
+(1,1,10,'Muy rico!'),
+(1,2,10,'Muy rico!'),
+(1,3,10,'Muy rico!'),
+(2,1,10,'Muy rico!'),
+(2,2,10,'Muy rico!'),
+(2,3,10,'Muy rico!'),
+(2,4,10,'Muy rico!'),
+(2,1,10,'Muy rico!'),
+(2,2,10,'Muy rico!'),
+(2,3,10,'Muy rico!'),
+(3,1,10,'Muy rico!'),
+(3,2,10,'Muy rico!'),
+(3,3,10,'Muy rico!'),
+(3,4,10,'Muy rico!'),
+(3,1,10,'Muy rico!'),
+(3,2,10,'Muy rico!'),
+(3,3,10,'Muy rico!'),
+(4,1,10,'Muy rico!'),
+(4,2,10,'Muy rico!'),
+(4,3,10,'Muy rico!'),
+(4,4,10,'Muy rico!'),
+(4,1,10,'Muy rico!'),
+(4,2,10,'Muy rico!'),
+(4,3,10,'Muy rico!'),
+(5,1,10,'Muy rico!'),
+(5,2,10,'Muy rico!'),
+(5,3,10,'Muy rico!'),
+(5,4,10,'Muy rico!'),
+(5,1,10,'Muy rico!'),
+(5,2,10,'Muy rico!'),
+(5,3,10,'Muy rico!'),
+(6,1,10,'Muy rico!'),
+(6,2,10,'Muy rico!'),
+(6,3,10,'Muy rico!'),
+(6,4,10,'Muy rico!'),
+(6,1,10,'Muy rico!'),
+(6,2,10,'Muy rico!'),
+(6,3,10,'Muy rico!')
+GO
+

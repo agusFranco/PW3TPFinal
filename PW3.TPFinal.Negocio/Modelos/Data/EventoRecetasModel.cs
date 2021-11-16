@@ -19,6 +19,7 @@ namespace PW3.TPFinal.Negocio.Modelos.Data
             this.CantidadComensales = evento.CantidadComensales;
             this.Ubicacion = evento.Ubicacion;
             this.Precio = evento.Precio;
+            this.Foto = evento.Foto;
             this.Recetas = evento.EventosReceta.Select(x => new RecetaModel(x.IdRecetaNavigation)).ToList();  
         }
 
