@@ -1,6 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PW3.TPFinal.Comun.Resultado;
+using PW3.TPFinal.Negocio.Modelos;
+using PW3.TPFinal.Negocio.Servicios.Contratos;
 
 namespace PW3.TPFinal.WebAPI.Controllers
 {
@@ -8,11 +13,15 @@ namespace PW3.TPFinal.WebAPI.Controllers
     [Route("[controller]")]
     public class EventosController : ControllerBase
     {
-        private readonly ILogger<EventosController> _logger;
+        private readonly ILogger<EventosController> Logger;
+        private readonly IEventoServicio EventoServicio;
 
-        public EventosController(ILogger<EventosController> logger)
+        public EventosController(
+            IEventoServicio eventoServicio,
+            ILogger<EventosController> logger)
         {
-            _logger = logger;
+            this.EventoServicio = eventoServicio;
+            this.Logger = logger;
         }
 
         [HttpGet]
@@ -33,10 +42,16 @@ namespace PW3.TPFinal.WebAPI.Controllers
         [Route("{id}")]
         [HttpDelete]
         [Authorize]
-        public object Cancelar(int id)
+        public Resultado Cancelar(int id)
         {
-            return $"INTENTO DE BORRAR EL EVENTO CON ID {id}";
-        }
+            // Obtengo el UsuarioId del Claim NameIdentifier
+            var usuarioId = int.Parse(this.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
 
+            var modelo = new CancelarEventoModel(usuarioId, id);
+
+            var resultado = this.EventoServicio.Cancelar(modelo);
+
+            return resultado;
+        }
     }
 }

@@ -82,7 +82,7 @@ namespace PW3.TPFinal.Web.Controllers
         }
 
         public IActionResult Perfil()
-        {
+        {           
             // Mandar datos del cocinero
             int idCocinero = HttpContext.Session.ObtenerIdUsuario();
             Usuario cocinero = this.CocineroServicio.ObtenerDatosDelCocinero(idCocinero);

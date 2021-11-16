@@ -104,6 +104,7 @@ namespace PW3.TPFinal.Negocio.Servicios
 
                 var claims = new List<Claim>
                 {
+                    new Claim(ClaimTypes.NameIdentifier, usuario.IdUsuario.ToString()),
                     new Claim(JwtRegisteredClaimNames.Sub, usuario.IdUsuario.ToString()),
                     new Claim(JwtRegisteredClaimNames.Jti, Task.FromResult(Guid.NewGuid().ToString()).Result),
                     new Claim(JwtRegisteredClaimNames.Iat, iat, ClaimValueTypes.Integer64),

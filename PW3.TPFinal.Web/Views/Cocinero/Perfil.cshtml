@@ -13,6 +13,10 @@
         <h1 class="text-uppercase font-weight-bold">Perfil</h1>
         <partial name="/Views/Shared/_Message_Bar.cshtml" />
 
+        <div id="contenedorMensaje" class="alert d-flex align-items-center fade show mb-3 d-initial-none" role="alert">
+            <span id="mensaje"></span>
+        </div>
+
         <form>
             <div class="row">
                 <div class="col-lg-6">
@@ -137,17 +141,10 @@
                                 $ @Html.DisplayFor(modelItem => item.Precio)
                             </td>
                             <td>
-                                @{ <span> @((EstadoDeEvento)item.Estado) </span> }
+                                @{ <span id="evento-@item.IdEvento-estado"> @((EstadoDeEvento)item.Estado) </span> }
                             </td>
                             <td>
-                                @if (item.Estado == (int)EstadoDeEvento.Pendiente)
-                                {
-                                    <button onclick="abrirCancelarEventoModal(@item.IdEvento)" class="btn btn-xs btn-primary">CANCELAR</button>
-                                }
-                                else
-                                {
-                                    <button disabled class="btn btn-xs btn-primary">CANCELAR</button>
-                                }
+                                <button id="evento-@item.IdEvento-button" onclick="abrirCancelarEventoModal(@item.IdEvento)" @(item.Estado != (int)EstadoDeEvento.Pendiente ? "disabled" : null) class="btn btn-xs btn-primary">CANCELAR</button>
                             </td>
                         </tr>
                     }
@@ -170,7 +167,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
-                    <button type="button" class="btn btn-primary" onclick="cancelarEvento()">SI, CANCELAR</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="cancelarEvento()">SI, CANCELAR</button>
                 </div>
             </div>
         </div>

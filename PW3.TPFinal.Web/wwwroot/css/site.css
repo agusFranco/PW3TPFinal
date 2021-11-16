@@ -2,7 +2,7 @@
     height: 40px;
 }
 
-html,body{
+html, body {
     min-height: 100vh;
 }
 
@@ -10,3 +10,7 @@ main, .seccion-pagina {
     min-height: 75vh;
 }
 
+
+.d-initial-none {
+    display: none !important;
+}
