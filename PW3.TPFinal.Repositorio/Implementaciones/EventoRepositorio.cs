@@ -22,7 +22,9 @@ namespace PW3.TPFinal.Repositorio.Implementaciones
         {
             return this.Set.Include(x => x.Reservas)
                            .Include(x => x.Calificaciones)
+                            .ThenInclude(d => d.IdComensalNavigation)
                            .Include(x => x.EventosReceta)
+                           .Include(x => x.IdCocineroNavigation)
                            .Where(x => x.IdEvento == id)
                            .FirstOrDefault();
         }

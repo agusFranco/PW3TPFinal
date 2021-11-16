@@ -7,5 +7,7 @@ namespace PW3.TPFinal.Negocio.Servicios.Contratos
     public interface IEventoServicio
     {
         IList<EventoModel> ObtenerUltimosSeisConAlMenosUnComentario();
+
+        Evento ObtenerPorId(int id);
     }
 }
