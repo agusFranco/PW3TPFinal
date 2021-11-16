@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -20,14 +18,14 @@ namespace PW3.TPFinal.WebAPI.Controllers
         [HttpGet]
         [Authorize]
         public object Get()
-        {      
+        {
             return "Autorizado";
         }
 
         [Route("prueba")]
         [HttpGet]
         public object Prueba()
-        {     
+        {
             return "Sin Autorizacion";
         }
     }
