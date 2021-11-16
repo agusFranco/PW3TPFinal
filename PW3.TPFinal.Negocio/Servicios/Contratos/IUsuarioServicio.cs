@@ -9,8 +9,8 @@ namespace PW3.TPFinal.Negocio.Servicios.Contratos
     {
         IList<Usuario> ObtenerTodos();
 
-        Resultado<Usuario> Registrar(RegistrarUsuarioModel modelo);
+        Resultado<IngresoAutorizadoModel> Registrar(RegistrarUsuarioModel modelo);
 
-        Usuario ValidarUsuario(IngresarUsuarioModel modelo);
+        Resultado<IngresoAutorizadoModel> ValidarUsuario(IngresarUsuarioModel modelo);
     }
 }

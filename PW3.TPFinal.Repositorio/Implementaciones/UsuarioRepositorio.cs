@@ -16,13 +16,6 @@ namespace PW3.TPFinal.Repositorio.Implementaciones
 
             return this.Set.Where(x => x.Email.Equals(emailLower))
                            .FirstOrDefault();
-        }
-
-        public Usuario ValidarUsuario(string email, string password)
-        {
-            var usuario = this.Set.Where(u => u.Email == email).FirstOrDefault();
-            
-            return usuario;
-        }
+        }     
     }
 }

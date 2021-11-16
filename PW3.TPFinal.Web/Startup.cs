@@ -11,6 +11,7 @@ using PW3.TPFinal.Repositorio.Implementaciones;
 using PW3.TPFinal.Negocio.Servicios.Contratos;
 using PW3.TPFinal.Web.Filters;
 using PW3.TPFinal.Negocio.Servicios;
+using PW3.TPFinal.Comun.Configuracion;
 
 namespace PW3.TPFinal.Web
 {
@@ -30,16 +31,6 @@ namespace PW3.TPFinal.Web
 
             services.AddControllersWithViews();
 
-            // El mismo para todo el request;
-            //services.AddScoped<IEventoServicio, EventoServicio>();
-
-            //// Uno para cada instancia que la requiera;
-            //services.AddTransient<IEventoServicio, EventoServicio>();
-
-            //// El mismo para todo sin morir.
-            //services.AddSingleton<IEventoServicio, EventoServicio>();
-
-            //Configuro Session
             services.AddSession(options =>
             {
                 options.Cookie.Name = "Session";
@@ -64,6 +55,8 @@ namespace PW3.TPFinal.Web
             services.AddScoped<IUsuarioServicio, UsuarioServicio>();
             services.AddScoped<ICocineroServicio, CocineroServicio>();
             services.AddScoped<IComensalServicio, ComensalServicio>();
+
+            services.Configure<JWTConfiguracion>(options => this.Configuration.GetSection("JWTConfig").Bind(options));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,44 +75,15 @@ namespace PW3.TPFinal.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
-            app.UseSession();
-
-
-            ConfigurarMiddleware(app);
-
-
+            app.UseSession();    
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Evento}/{action=Index}/{id?}");
             });
-        }
-
-        private void ConfigurarMiddleware(IApplicationBuilder app)
-        {
-            //app.UseWhen(context => context.Request.Path.StartsWithSegments("/Cocinero", StringComparison.InvariantCultureIgnoreCase),
-            //            app =>
-            //            {
-            //                app.UseMiddleware<CocinerosMiddleware>();
-            //            });
-
-            //app.UseWhen(context => context.Request.Path.StartsWithSegments("/Comensal", StringComparison.InvariantCultureIgnoreCase),
-            //            app =>
-            //            {
-            //                app.UseMiddleware<ComensalesMiddleware>();
-            //            });
-
-            //app.UseWhen(context => context.Request.Path.StartsWithSegments("/Usuario", StringComparison.InvariantCultureIgnoreCase),
-            // app =>
-            // {
-            //     app.UseMiddleware<UsuarioMiddleware>();
-            // });
-        }
+        } 
     }
 }

@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Enums;
 using PW3.TPFinal.Negocio.Modelos;
 using PW3.TPFinal.Negocio.Servicios.Contratos;
-using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Web.Extensiones;
 using PW3.TPFinal.Web.Filters;
 
@@ -47,11 +46,7 @@ namespace PW3.TPFinal.Web.Controllers
                 return View(modelo);
             }
 
-            this.AgregarSuccess(resultado.Mensaje);
-
-            HttpContext.Session.SetUsuario(resultado.Dato);
-
-            return this.Redirigir(resultado.Dato.Perfil);
+            return this.FinalizarIngreso(resultado.Dato);
         }
 
         [NoEstaLogeado]
@@ -65,7 +60,7 @@ namespace PW3.TPFinal.Web.Controllers
         public IActionResult Salir()
         {
             HttpContext.Session.Clear();
-
+            Response.Cookies.Delete("X-PW3-Ticket");
             return RedirectToAction("Index", "Evento");
         }
 
@@ -79,16 +74,23 @@ namespace PW3.TPFinal.Web.Controllers
                 return View();
             }
 
-            Usuario usuario = UsuarioServicio.ValidarUsuario(modelo);
+            var resultado = this.UsuarioServicio.ValidarUsuario(modelo);
 
-            if (usuario != null)
+            if (!resultado.Success)
             {
-                HttpContext.Session.SetUsuario(usuario);
-                return this.Redirigir(usuario.Perfil);
+                ModelState.AddModelError(string.Empty, "Credenciales incorrectas");
+                return View(modelo);
             }
 
-            ModelState.AddModelError(string.Empty, "Credenciales incorrectas");
-            return View(modelo);
+            return this.FinalizarIngreso(resultado.Dato);
+        }
+
+        private IActionResult FinalizarIngreso(IngresoAutorizadoModel modelo)
+        {
+            Response.Cookies.Append("X-PW3-Ticket", modelo.Ticket);
+            this.AgregarSuccess("Bienvenido.!");
+            HttpContext.Session.SetUsuario(modelo.Usuario);
+            return this.Redirigir(modelo.Usuario.Perfil);
         }
 
         private RedirectToActionResult Redirigir(int perfil)
