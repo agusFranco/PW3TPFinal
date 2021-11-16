@@ -121,7 +121,7 @@ namespace PW3.TPFinal.WebAPI
             .AddJwtBearer(x =>
             {
                 x.SaveToken = true;
-                x.RequireHttpsMetadata = false;
+                x.RequireHttpsMetadata = false;                
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidIssuer = tokenSettings.Issuer,

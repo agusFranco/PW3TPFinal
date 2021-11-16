@@ -112,11 +112,11 @@ namespace PW3.TPFinal.Negocio.Servicios
                 };
 
                 var jwtSecurityToken = new JwtSecurityToken(
-                                        issuer: this.JWTConfiguracion.Issuer,
-                                        audience: this.JWTConfiguracion.Audience,
-                                        claims: claims,
-                                        expires: DateTime.Now.AddDays(10),
-                                        signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(this.JWTConfiguracion.SecretKey)), SecurityAlgorithms.HmacSha256)
+                                            issuer: this.JWTConfiguracion.Issuer,
+                                            audience: this.JWTConfiguracion.Audience,
+                                            claims: claims,
+                                            expires: DateTime.Now.AddDays(10),
+                                            signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(this.JWTConfiguracion.SecretKey)), SecurityAlgorithms.HmacSha256)
                                         );
 
                 var encodedJWTSecurityToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);

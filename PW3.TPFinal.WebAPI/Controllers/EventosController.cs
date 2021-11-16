@@ -19,7 +19,7 @@ namespace PW3.TPFinal.WebAPI.Controllers
         [Authorize]
         public object Get()
         {
-            return "Autorizado";
+            return $"Autorizado";
         }
 
         [Route("prueba")]
@@ -28,5 +28,15 @@ namespace PW3.TPFinal.WebAPI.Controllers
         {
             return "Sin Autorizacion";
         }
+
+        // Eventos/{id}
+        [Route("{id}")]
+        [HttpDelete]
+        [Authorize]
+        public object Cancelar(int id)
+        {
+            return $"INTENTO DE BORRAR EL EVENTO CON ID {id}";
+        }
+
     }
 }

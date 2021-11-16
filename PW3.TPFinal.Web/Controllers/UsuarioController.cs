@@ -87,8 +87,8 @@ namespace PW3.TPFinal.Web.Controllers
 
         private IActionResult FinalizarIngreso(IngresoAutorizadoModel modelo)
         {
-            Response.Cookies.Append("X-PW3-Ticket", modelo.Ticket);
             this.AgregarSuccess("Bienvenido.!");
+            Response.Cookies.Append("X-PW3-Ticket", modelo.Ticket);           
             HttpContext.Session.SetUsuario(modelo.Usuario);
             return this.Redirigir(modelo.Usuario.Perfil);
         }

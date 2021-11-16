@@ -142,11 +142,11 @@
                             <td>
                                 @if (item.Estado == (int)EstadoDeEvento.Pendiente)
                                 {
-                                    <button onclick="abrirCancelarEventoModal()" class="btn btn-xs btn-primary">SELECCIONAR</button>
+                                    <button onclick="abrirCancelarEventoModal(@item.IdEvento)" class="btn btn-xs btn-primary">CANCELAR</button>
                                 }
                                 else
                                 {
-                                    <button disabled class="btn btn-xs btn-primary">SELECCIONAR</button>
+                                    <button disabled class="btn btn-xs btn-primary">CANCELAR</button>
                                 }
                             </td>
                         </tr>
@@ -166,10 +166,11 @@
                 </div>
                 <div class="modal-body">
                     <p>Esta seguro que desea cancelar el evento?</p>
+                    <input type="hidden" id="idEventoACancelar" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
-                    <button type="button" class="btn btn-primary">SI, CANCELAR</button>
+                    <button type="button" class="btn btn-primary" onclick="cancelarEvento()">SI, CANCELAR</button>
                 </div>
             </div>
         </div>
