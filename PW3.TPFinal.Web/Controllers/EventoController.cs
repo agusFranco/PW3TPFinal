@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Negocio.Servicios.Contratos;
 using PW3.TPFinal.Web.Models;
+using PW3.TPFinal.Negocio.Modelos.Data;
 
 namespace PW3.TPFinal.Web.Controllers
 {
@@ -21,7 +22,7 @@ namespace PW3.TPFinal.Web.Controllers
 
         public IActionResult Index()
         {
-            IList<Evento> eventos = _eventoServicio.ObtenerUltimosSeisConAlMenosUnComentario();
+            IList<EventoModel> eventos = _eventoServicio.ObtenerUltimosSeisConAlMenosUnComentario();
             return View(eventos);
         }      
 

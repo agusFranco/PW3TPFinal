@@ -4,6 +4,7 @@ using System.Linq;
 using PW3.TPFinal.Repositorio.Contratos;
 using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Negocio.Servicios.Contratos;
+using PW3.TPFinal.Negocio.Modelos.Data;
 
 namespace PW3.TPFinal.Negocio.Servicios
 {
@@ -14,18 +15,13 @@ namespace PW3.TPFinal.Negocio.Servicios
         public EventoServicio(IEventoRepositorio eventoRepositorio)
         {
             this.EventoRepositorio = eventoRepositorio;
-        }
+        }  
 
-        public IList<Evento> ObtenerTodos()
+        public IList<EventoModel> ObtenerUltimosSeisConAlMenosUnComentario()
         {
-            return this.EventoRepositorio.Obtener().ToList();
-        }
-
-        public IList<Evento> ObtenerUltimosSeisConAlMenosUnComentario()
-        {
-            IList<Evento> eventos = this.EventoRepositorio.ObtenerUltimosSeisConAlMenosUnComentario();
-
-            return eventos;
+            return this.EventoRepositorio.ObtenerUltimosSeisConAlMenosUnComentario()
+                                         .Select(x => new EventoModel(x))
+                                         .ToList();
         }
     }
 }

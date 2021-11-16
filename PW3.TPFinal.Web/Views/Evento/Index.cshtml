@@ -1,5 +1,5 @@
-﻿@using PW3.TPFinal.Repositorio.Data
-@model List<Evento>
+﻿@using PW3.TPFinal.Negocio.Modelos.Data
+@model List<EventoModel>
 
 @{
     Layout = "~/Views/Shared/Anonimo/_Anonimo.cshtml";
@@ -35,6 +35,10 @@
                                 <div>
                                     <p class="mb-0 text-capitalize">Precio</p>
                                     <h3 class="text-primary">$@evento.Precio</h3>
+                                </div>
+                                <div>
+                                    <p class="mb-0 text-capitalize">Puntuacion</p>
+                                    <h3 class="text-primary">@evento.Puntuacion</h3>
                                 </div>
                                 <div>
                                     <button class="btn btn-xs btn-outline-secondary text-uppercase">SELECCIONAR</button>

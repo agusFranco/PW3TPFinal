@@ -29,7 +29,8 @@ namespace PW3.TPFinal.Repositorio.Implementaciones
 
         public IList<Evento> ObtenerUltimosSeisConAlMenosUnComentario()
         {
-            return Set.Where(evento => evento.Estado == (int)EstadoDeEvento.Finalizado && 
+            return Set.Include(x => x.Calificaciones)
+                      .Where(evento => evento.Estado == (int)EstadoDeEvento.Finalizado &&
                                        evento.Calificaciones.Any(calificacion => calificacion.Comentarios.Length > 0))
                       .OrderBy(evento => evento.Fecha)
                       .Take(6)
