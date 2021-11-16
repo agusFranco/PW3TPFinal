@@ -35,20 +35,21 @@ namespace PW3.TPFinal.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.AgregarErrorDelModelState();
                 return View(this.ObtenerAgregarRecetaModel(modelo));
             }
 
             modelo.IdCocinero = HttpContext.Session.ObtenerIdUsuario();
 
-            var resultado = this.CocineroServicio.AgregarReceta(modelo);
-
-            TempData["Mensaje"] = resultado.Mensaje;
+            var resultado = this.CocineroServicio.AgregarReceta(modelo);          
 
             if (!resultado.Success)
             {
+                this.AgregarError(resultado.Mensaje);
                 return View(this.ObtenerAgregarRecetaModel(modelo));
             }
 
+            this.AgregarSuccess(resultado.Mensaje);
             return RedirectToAction("Perfil", "Cocinero");
         }
 
@@ -62,6 +63,7 @@ namespace PW3.TPFinal.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.AgregarErrorDelModelState();
                 return View(this.ObtenerNuevoEventoModel(modelo));
             }
 
@@ -69,13 +71,13 @@ namespace PW3.TPFinal.Web.Controllers
 
             var resultado = this.CocineroServicio.AgregarEvento(modelo);
 
-            TempData["Mensaje"] = resultado.Mensaje;
-
             if (!resultado.Success)
             {
+                this.AgregarError(resultado.Mensaje);
                 return View(this.ObtenerNuevoEventoModel(modelo));
             }
 
+            this.AgregarSuccess(resultado.Mensaje);
             return RedirectToAction("Perfil", "Cocinero");
         }
 
