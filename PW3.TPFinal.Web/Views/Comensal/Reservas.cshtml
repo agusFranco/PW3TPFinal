@@ -1,5 +1,6 @@
-﻿@using PW3.TPFinal.Repositorio.Data
-@model List<Reserva>
+﻿@using PW3.TPFinal.Negocio.Modelos.Data;
+@using PW3.TPFinal.Comun.Enums
+@model List<ReservaModel>
 
 @{
     Layout = "Comensal/_Comensal";
@@ -25,17 +26,17 @@
         }
 
         <div class="row">
-            @foreach (Reserva r in Model)
+            @foreach (ReservaModel reserva in Model)
             {
                 {
                     string str = "Pendiente";
                     string color = "bg-black";
-                    if (@r.IdEventoNavigation.Estado == 1)
+                    if (reserva.EventoEstado == EstadoDeEvento.Finalizado)
                     {
-                        str = "Realizado";
+                        str = "Finalizado";
                         color = "bg-black";
                     }
-                    else if (@r.IdEventoNavigation.Estado == 2)
+                    else if (reserva.EventoEstado == EstadoDeEvento.Cancelado)
                     {
                         str = "Cancelado";
                         color = "bg-gray-color";
@@ -44,7 +45,7 @@
                     <div class="col-lg-4 mb-2">
                         <div class="card">
                             <div class="card-header @color text-white h-50">
-                                Nombre Evento: @r.IdEventoNavigation.Nombre
+                                Nombre Evento: @reserva.EventoNombre
                             </div>
                             <div class="card-body">
                                 <p class="card-text">
@@ -52,7 +53,14 @@
                                         Estado: @str
                                     </span>
                                 </p>
-                                <p class="card-text"><span>Hora: @r.IdEventoNavigation.Fecha</span> </p>
+                                <p class="card-text"><span>Fecha: @reserva.FechaCreacion</span> </p>
+
+                                @if (reserva.PuedeComentar)
+                                {
+                                    <div class="text-center">
+                                        <button class="btn btn-primary btn-xs" onclick="abrirCalificarModal(@reserva.IdEvento)">COMENTAR</button>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -61,6 +69,51 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade mb-8" id="calificarModal" tabindex="-1" role="dialog" aria-labelledby="calificarModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Califiar Evento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Comentar" asp-controller="Comensal" method="post" class="mt-5">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h3 id="nombreEvento"></h3>
+                            <input type="number" id="IdEvento" name="IdEvento" hidden class="form-control border-0 bg-smoke">
+
+                            <div class="form-group">
+                                <label for="Calificacion">Calificacion</label>
+                                <select for="Calificacion" name="Calificacion" class="form-control border-0 bg-smoke form-select">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <span for="Calificacion" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Comentario">Comentario</label>
+                                <textarea for="Comentario" name="Comentario" class="form-control border-0 bg-smoke"></textarea>
+                                <span for="Comentario" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="text-center text-md-start text-lg-left">
+                            <button type="submit" class="btn btn-primary text-uppercase">
+                                GUARDAR
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section PageScripts {
     <script type="text/javascript" src="@Url.Content("~/js/paginas/misReservas.js")"></script>
 }

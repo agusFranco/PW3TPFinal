@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Resultado;
 using PW3.TPFinal.Negocio.Modelos;
+using PW3.TPFinal.Negocio.Modelos.Data;
 using PW3.TPFinal.Negocio.Servicios.Contratos;
 using PW3.TPFinal.Repositorio.Contratos;
 using PW3.TPFinal.Repositorio.Data;
@@ -14,13 +15,19 @@ namespace PW3.TPFinal.Negocio.Servicios
     {
         private readonly IReservaRepositorio ReservaRepositorio;
         private readonly IEventoRepositorio EventoRepositorio;
+        private readonly ICalificacionRepositorio CalificacionRepositorio;
         private readonly ILogger<ComensalServicio> Logger;
 
-        public ComensalServicio(IReservaRepositorio reservaRepositorio, IEventoRepositorio eventoRepositorio, ILogger<ComensalServicio> logger)
+        public ComensalServicio(
+            IReservaRepositorio reservaRepositorio,
+            IEventoRepositorio eventoRepositorio,
+            ICalificacionRepositorio calificacionRepositorio,
+            ILogger<ComensalServicio> logger)
         {
             this.Logger = logger;
             this.ReservaRepositorio = reservaRepositorio;
             this.EventoRepositorio = eventoRepositorio;
+            this.CalificacionRepositorio = calificacionRepositorio;
         }
 
         public IList<Evento> ObtenerEventosDisponibles()
@@ -28,10 +35,11 @@ namespace PW3.TPFinal.Negocio.Servicios
             return this.EventoRepositorio.ObtenerDisponibles();
         }
 
-        public List<Reserva> ObtenerReservas(int idUsuario)
+        public IList<ReservaModel> ObtenerReservas(int idUsuario)
         {
-            List<Reserva> reservas = this.ReservaRepositorio.ObtenerReservas(idUsuario);
-
+            IList<ReservaModel> reservas = this.ReservaRepositorio.ObtenerReservas(idUsuario)
+                                                                  .Select(x => new ReservaModel(x))
+                                                                  .ToList();
             return reservas;
         }
 
@@ -80,6 +88,44 @@ namespace PW3.TPFinal.Negocio.Servicios
                 this.Logger.LogError($"Ocurrio un error. Ex.Mensaje = {ex.Message}");
                 resultado.Success = false;
                 resultado.Mensaje = "Ocurrio un error al guardar la Reserva. Intente Nuevamente.";
+                return resultado;
+            }
+        }
+
+        public Resultado ComentarEvento(ComentarModel modelo)
+        {
+            var resultado = new Resultado();
+
+            try
+            {
+                var evento = this.EventoRepositorio.Obtener(modelo.IdEvento);
+
+                if (evento == null)
+                {
+                    resultado.Success = false;
+                    resultado.Mensaje = "Evento no encontrado.";
+                    return resultado;
+                }
+
+                Calificacione nuevo = new Calificacione();
+
+                nuevo.IdEvento = modelo.IdEvento;
+                nuevo.IdComensal = modelo.IdUsuario;
+                nuevo.Calificacion = modelo.Calificacion;
+                nuevo.Comentarios = modelo.Comentario;
+
+                this.CalificacionRepositorio.Agregar(nuevo);
+                this.CalificacionRepositorio.Guardar();
+
+                resultado.Success = true;
+                resultado.Mensaje = "Comentario guardado correctamente.";
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                this.Logger.LogError($"Ocurrio un error. Ex.Mensaje = {ex.Message}");
+                resultado.Success = false;
+                resultado.Mensaje = "Ocurrio un error al guardar el Comentario. Intente Nuevamente.";
                 return resultado;
             }
         }

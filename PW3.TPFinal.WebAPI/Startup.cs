@@ -75,6 +75,7 @@ namespace PW3.TPFinal.WebAPI
             services.AddScoped<IRecetaRepositorio, RecetaRepositorio>();
             services.AddScoped<ITipoRecetaRepositorio, TipoRecetaRepositorio>();
             services.AddScoped<IReservaRepositorio, ReservaRepositorio>();
+            services.AddScoped<ICalificacionRepositorio, CalificacionRepositorio>();
 
             // Configuro Servicios
             services.AddScoped<IEventoServicio, EventoServicio>();

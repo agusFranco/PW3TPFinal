@@ -59,13 +59,31 @@ namespace PW3.TPFinal.Web.Controllers
         public IActionResult Reservas()
         {
             Usuario comensal = HttpContext.Session.ObtenerUsuario();
-            IList<Reserva> reservas = this.ComensalServicio.ObtenerReservas(comensal.IdUsuario);
+            IList<ReservaModel> reservas = this.ComensalServicio.ObtenerReservas(comensal.IdUsuario);
             return View(reservas);
         }
 
-        public IActionResult Comentarios()
+        [HttpPost]
+        public IActionResult Comentar(ComentarModel modelo)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                this.AgregarErrorDelModelState();
+                return RedirectToAction(nameof(Reservas));
+            }
+
+            modelo.IdUsuario = HttpContext.Session.ObtenerIdUsuario();
+
+            var resultado = this.ComensalServicio.ComentarEvento(modelo);
+
+            if (!resultado.Success)
+            {
+                this.AgregarError(resultado.Mensaje);
+                return RedirectToAction(nameof(Reservas));
+            }
+
+            this.AgregarSuccess(resultado.Mensaje);
+            return RedirectToAction(nameof(Reservas));
         }
 
         private AgregarReservaModel ObtenerAgregarReservaModel(AgregarReservaModel modelo = null)
