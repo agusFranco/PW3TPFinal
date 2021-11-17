@@ -26,7 +26,7 @@ namespace PW3.TPFinal.Negocio.Modelos.Data
             this.Fecha = evento.Fecha.ToString("dd/MM/yyyy");
             this.CantidadComensales = evento.CantidadComensales;
             this.Ubicacion = evento.Ubicacion;
-            this.Precio = evento.Precio.ToString("0.00");
+            this.Precio = evento.Precio.ToString("0,00");
             this.Foto = evento.Foto;
             this.Estado = (EstadoDeEvento)evento.Estado;
             this.Puntuacion = ((decimal)evento.Calificaciones.Sum(x => x.Calificacion) / (decimal)evento.Calificaciones.Count).ToString("0.0");
