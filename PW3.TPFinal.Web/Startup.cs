@@ -62,7 +62,7 @@ namespace PW3.TPFinal.Web
                     "template/plugins/lazyestload/lazyestload.js",
                     "template/plugins/smoothscroll/SmoothScroll.js",
                     "template/js/star.js",
-                    "js/**/*.js");
+                    "js/site.js");
             }));
 
             // Filtros
