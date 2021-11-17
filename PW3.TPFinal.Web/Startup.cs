@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PW3.TPFinal.Comun.Configuracion;
+using PW3.TPFinal.Negocio.Servicios;
+using PW3.TPFinal.Negocio.Servicios.Contratos;
 using PW3.TPFinal.Repositorio.Contratos;
 using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Repositorio.Implementaciones;
-using PW3.TPFinal.Negocio.Servicios.Contratos;
 using PW3.TPFinal.Web.Filters;
-using PW3.TPFinal.Negocio.Servicios;
-using PW3.TPFinal.Comun.Configuracion;
 
 namespace PW3.TPFinal.Web
 {
@@ -36,6 +36,34 @@ namespace PW3.TPFinal.Web
                 options.Cookie.Name = "Session";
                 options.IdleTimeout = TimeSpan.FromSeconds(1200);
             });
+
+            services.AddWebOptimizer((pipeline =>
+            {
+                pipeline.MinifyJsFiles("js/**/*.js");
+                pipeline.MinifyCssFiles("css/**/*.css");
+
+                pipeline.AddCssBundle(
+                    "/css/bundle.css",
+                    "template/plugins/fontawesome-5.15.2/css/all.min.css",
+                    "template/plugins/fontawesome-5.15.2/css/fontawesome.min.css",
+                    "template/plugins/animate/animate.css",
+                    "template/plugins/menuzord/css/menuzord.css",
+                    "template/plugins/menuzord/css/menuzord-animations.css",
+                    "template/plugins/fancybox/jquery.fancybox.min.css",
+                    "template/css/star.css",
+                    "css/**/*.css");
+
+                pipeline.AddJavaScriptBundle(
+                    "/js/bundle.js",
+                    "template/plugins/jquery/jquery.min.js",
+                    "template/plugins/bootstrap/js/bootstrap.bundle.min.js",
+                    "template/plugins/menuzord/js/menuzord.js",
+                    "template/plugins/fancybox/jquery.fancybox.min.js",
+                    "template/plugins/lazyestload/lazyestload.js",
+                    "template/plugins/smoothscroll/SmoothScroll.js",
+                    "template/js/star.js",
+                    "js/**/*.js");
+            }));
 
             // Filtros
             services.AddScoped<EsCocinero>();
@@ -74,17 +102,19 @@ namespace PW3.TPFinal.Web
                 app.UseHsts();
             }
 
+            app.UseWebOptimizer();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
-            app.UseSession();    
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Evento}/{action=Index}/{id?}");
             });
-        } 
+        }
     }
 }
