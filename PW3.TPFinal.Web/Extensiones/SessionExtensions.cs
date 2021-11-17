@@ -51,6 +51,7 @@ namespace PW3.TPFinal.Web.Extensiones
 
             return (TipoUsuario)perfil == TipoUsuario.Comensal;
         }
+
         public static bool EsCocinero(this ISession session)
         {
             var perfil = session.ObtenerPerfil();

@@ -27,16 +27,19 @@ namespace PW3.TPFinal.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // 1 - Configuracion del DB Context - Para la base datos.
             services.AddDbContext<_20212C_TPContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TPFinalContext")));
 
             services.AddControllersWithViews();
 
+            // 2 - Agregado de Session
             services.AddSession(options =>
             {
                 options.Cookie.Name = "Session";
                 options.IdleTimeout = TimeSpan.FromSeconds(1200);
             });
 
+            // 3 - WebOptimizer para bundling y minification.
             services.AddWebOptimizer((pipeline =>
             {
                 pipeline.MinifyJsFiles("js/**/*.js");
@@ -72,6 +75,9 @@ namespace PW3.TPFinal.Web
             services.AddScoped<Logeado>();
 
             // Configuro Repositorios
+            // Scoped - Una instancia por REQUEST
+            // Transient - Una instancia por DEPENDENCIA
+            // Singleton - Una instancia para todo
             services.AddScoped<IEventoRepositorio, EventoRepositorio>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<IRecetaRepositorio, RecetaRepositorio>();
@@ -85,6 +91,7 @@ namespace PW3.TPFinal.Web
             services.AddScoped<ICocineroServicio, CocineroServicio>();
             services.AddScoped<IComensalServicio, ComensalServicio>();
 
+            // Toma del appsettings.json
             services.Configure<JWTConfiguracion>(options => this.Configuration.GetSection("JWTConfig").Bind(options));
         }
 
@@ -103,7 +110,6 @@ namespace PW3.TPFinal.Web
             }
 
             app.UseWebOptimizer();
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();

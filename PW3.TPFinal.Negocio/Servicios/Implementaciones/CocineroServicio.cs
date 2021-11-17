@@ -87,7 +87,7 @@ namespace PW3.TPFinal.Negocio.Servicios
                 nuevo.Estado = (int)EstadoDeEvento.Pendiente;
                 //nuevo.Descripcion = modelo.Descripcion;
                 nuevo.Foto = $"{Guid.NewGuid()}{Path.GetExtension(modelo.Foto.FileName)}";
-                nuevo.EventosReceta = modelo.RecetasPropuestas.Select(x => new EventosReceta() { IdReceta = x }).ToList();
+                nuevo.EventosReceta = modelo.RecetasPropuestas.Select(x => new EventosReceta() { IdReceta = x }).ToList();        
 
                 this.EventoRepositorio.Agregar(nuevo);
                 this.EventoRepositorio.Guardar();
@@ -118,13 +118,13 @@ namespace PW3.TPFinal.Negocio.Servicios
             return this.RecetaRepositorio.ObtenerPorIdCocinero(idCocinero).ToList();
         }
 
-        private Task GuardarFoto(IFormFile foto, string fotoId)
+        private Task GuardarFoto(IFormFile foto, string nombreFoto)
         {
-            string fotos = Path.Combine(this.HostingEnvironment.WebRootPath, "Fotos");
+            string fotoPath = Path.Combine(this.HostingEnvironment.WebRootPath, "Fotos");
 
-            Directory.CreateDirectory(fotos);
+            Directory.CreateDirectory(fotoPath);
 
-            string filePath = Path.Combine(fotos, fotoId);
+            string filePath = Path.Combine(fotoPath, nombreFoto);
 
             using (Stream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
             {
