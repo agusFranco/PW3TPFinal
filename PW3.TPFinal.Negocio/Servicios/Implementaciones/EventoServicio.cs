@@ -27,9 +27,10 @@ namespace PW3.TPFinal.Negocio.Servicios
                                          .ToList();
         }
 
-        public Evento ObtenerPorId(int id)
+        public EventoModel ObtenerPorId(int id)
         {
-            return this.EventoRepositorio.ObtenerCompletoPorId(id);
+            var evento =  this.EventoRepositorio.ObtenerCompletoPorId(id);
+            return new EventoModel(evento);
         }
 
         public Resultado Cancelar(CancelarEventoModel modelo)

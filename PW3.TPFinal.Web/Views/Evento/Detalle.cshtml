@@ -1,5 +1,5 @@
-﻿@using PW3.TPFinal.Repositorio.Data
-@model Evento
+﻿@using PW3.TPFinal.Negocio.Modelos.Data
+@model EventoModel
 
 @{
     Layout = "~/Views/Shared/Anonimo/_Anonimo.cshtml";
@@ -23,8 +23,8 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="form-group">
-                    <label asp-for="IdCocineroNavigation.Nombre">Cocinero</label>
-                    <input type="text" asp-for="IdCocineroNavigation.Nombre" class="form-control border-0 bg-smoke" readonly>
+                    <label asp-for="NombreCocinero">Cocinero</label>
+                    <input type="text" asp-for="NombreCocinero" class="form-control border-0 bg-smoke" readonly>
                 </div>
                 <div class="form-group">
                     <label asp-for="CantidadComensales">Cantidad de Comensales</label>
@@ -66,7 +66,7 @@
                         {
                         <tr>
                             <td>@calificacion.IdCalificacion</td>
-                            <td>@calificacion.IdComensalNavigation.Nombre</td>
+                            <td>@calificacion.NombreComensal</td>
                             <td>@calificacion.Comentarios</td>
                         </tr>
                         }                      

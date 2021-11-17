@@ -10,7 +10,7 @@ namespace PW3.TPFinal.Negocio.Servicios.Contratos
     {
         IList<EventoModel> ObtenerUltimosSeisConAlMenosUnComentario();
 
-        Evento ObtenerPorId(int id);
+        EventoModel ObtenerPorId(int id);
 
         Resultado Cancelar(CancelarEventoModel modelo);
     }
