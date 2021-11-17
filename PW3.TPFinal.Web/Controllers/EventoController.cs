@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Negocio.Modelos.Data;
 using PW3.TPFinal.Negocio.Servicios.Contratos;
-using PW3.TPFinal.Web.Models;
+using System.Collections.Generic;
 
 namespace PW3.TPFinal.Web.Controllers
 {
@@ -27,7 +25,7 @@ namespace PW3.TPFinal.Web.Controllers
 
         [Route("/Evento/{id}/Detalle")]
         public IActionResult Detalle(int id)
-        {            
+        {
             var evento = this.EventoServicio.ObtenerPorId(id);
 
             if (evento == null)
@@ -37,6 +35,6 @@ namespace PW3.TPFinal.Web.Controllers
             }
 
             return View(evento);
-        }      
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace PW3.TPFinal.Negocio.Modelos
 
         [Required(ErrorMessage = "La Fecha es requerida.")]
         [DataType(DataType.Date)]
+        [FechaMayorAHoy]
         public DateTime Fecha { get; set; }
 
         [Required(ErrorMessage = "La Descripcion es requerida.")]

@@ -23,21 +23,7 @@ namespace PW3.TPFinal.WebAPI.Controllers
             this.EventoServicio = eventoServicio;
             this.Logger = logger;
         }
-
-        [HttpGet]
-        [Authorize]
-        public object Get()
-        {
-            return $"Autorizado";
-        }
-
-        [Route("prueba")]
-        [HttpGet]
-        public object Prueba()
-        {
-            return "Sin Autorizacion";
-        }
-
+  
         // Eventos/{id}
         [Route("{id}")]
         [HttpDelete]
