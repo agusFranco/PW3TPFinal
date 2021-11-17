@@ -34,7 +34,7 @@ namespace PW3.TPFinal.Repositorio.Implementaciones
             return Set.Include(x => x.Calificaciones)
                       .Where(evento => evento.Estado == (int)EstadoDeEvento.Finalizado &&
                                        evento.Calificaciones.Any(calificacion => calificacion.Comentarios.Length > 0))
-                      .OrderBy(evento => evento.Fecha)
+                      .OrderByDescending(evento => evento.Fecha)
                       .Take(6)
                       .ToList();
         }
