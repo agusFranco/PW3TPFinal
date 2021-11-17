@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using PW3.TPFinal.Web.Extensiones;
 
 namespace PW3.TPFinal.Web.Filters
@@ -9,7 +10,7 @@ namespace PW3.TPFinal.Web.Filters
         {
             if (context.HttpContext.Session.ExisteUsuario())
             {
-                context.HttpContext.Response.Redirect("/Evento/Index");
+                context.Result = new RedirectResult("/Evento/Index");                
                 return;
             }
 
