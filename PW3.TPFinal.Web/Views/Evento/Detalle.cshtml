@@ -49,8 +49,9 @@
                 </div>
             </div>
         </div>
+        </div>
 
-        <div class="row">
+        @*<div class="row">
             <div class="col">
                 <h2>Comentarios</h2>
                 <table class="table table-bordered">
@@ -73,5 +74,30 @@
                     </tbody>
                 </table>
             </div>
+        </div>*@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="text-center">
+            <h1>Comentarios</h1>
         </div>
+
+        @foreach (var calificacion in Model.Calificaciones)
+        {
+            <div class="col-8 mb-3 mt-3">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        @calificacion.NombreComensal <span class="float-end">Calificación: @calificacion.Calificacion <i class="fas fa-star"></i></span>
+                    </div>
+                    <div class="card-body bg-light-gray">
+                        <p class="card-text">
+                            <span>
+                                @calificacion.Comentarios
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 </section>
