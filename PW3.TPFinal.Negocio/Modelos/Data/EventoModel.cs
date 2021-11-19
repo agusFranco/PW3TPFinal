@@ -1,8 +1,7 @@
-﻿using System;
+﻿using PW3.TPFinal.Comun.Enums;
+using PW3.TPFinal.Repositorio.Data;
 using System.Collections.Generic;
 using System.Linq;
-using PW3.TPFinal.Comun.Enums;
-using PW3.TPFinal.Repositorio.Data;
 
 namespace PW3.TPFinal.Negocio.Modelos.Data
 {
@@ -29,8 +28,12 @@ namespace PW3.TPFinal.Negocio.Modelos.Data
             this.Precio = evento.Precio.ToString("0,00");
             this.Foto = evento.Foto;
             this.Estado = (EstadoDeEvento)evento.Estado;
-            this.Puntuacion = ((decimal)evento.Calificaciones.Sum(x => x.Calificacion) / (decimal)evento.Calificaciones.Count).ToString("0.0");
-            this.Calificaciones = evento.Calificaciones.Select(x => new CalificacionModel(x)).ToList();
+
+            if (evento.Calificaciones.Count > 0)
+            {
+                this.Puntuacion = ((decimal)evento.Calificaciones.Sum(x => x.Calificacion) / (decimal)evento.Calificaciones.Count).ToString("0.0");
+                this.Calificaciones = evento.Calificaciones.Select(x => new CalificacionModel(x)).ToList();
+            }
         }
 
         public int IdEvento { get; set; }

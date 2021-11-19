@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Negocio.Modelos;
+using PW3.TPFinal.Negocio.Modelos.Data;
 using PW3.TPFinal.Negocio.Servicios.Contratos;
 using PW3.TPFinal.Repositorio.Data;
 using PW3.TPFinal.Web.Extensiones;
@@ -91,7 +92,7 @@ namespace PW3.TPFinal.Web.Controllers
             IList<Receta> recetas = this.CocineroServicio.ObtenerRecetasPorIdCocinero(idCocinero);
 
             // Mandar listado de eventos
-            IList<Evento> eventos = this.CocineroServicio.ObtenerEventosPorIdCocinero(idCocinero);
+            IList<EventoModel> eventos = this.CocineroServicio.ObtenerEventosPorIdCocinero(idCocinero);
 
             PerfilCocineroViewModel perfilCocineroViewModel = new PerfilCocineroViewModel
             {

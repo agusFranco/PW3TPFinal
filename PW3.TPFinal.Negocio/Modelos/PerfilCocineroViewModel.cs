@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PW3.TPFinal.Negocio.Modelos.Data;
 using PW3.TPFinal.Repositorio.Data;
 
 namespace PW3.TPFinal.Negocio.Modelos
@@ -9,6 +10,6 @@ namespace PW3.TPFinal.Negocio.Modelos
 
         public IList<Receta> Recetas { get; set; }
 
-        public IList<Evento> Eventos { get; set; }
+        public IList<EventoModel> Eventos { get; set; }
     }
 }

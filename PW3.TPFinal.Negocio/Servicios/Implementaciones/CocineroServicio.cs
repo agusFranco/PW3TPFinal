@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using PW3.TPFinal.Comun.Enums;
 using PW3.TPFinal.Comun.Resultado;
 using PW3.TPFinal.Negocio.Modelos;
+using PW3.TPFinal.Negocio.Modelos.Data;
 using PW3.TPFinal.Negocio.Servicios.Contratos;
 using PW3.TPFinal.Repositorio.Contratos;
 using PW3.TPFinal.Repositorio.Data;
@@ -137,9 +138,11 @@ namespace PW3.TPFinal.Negocio.Servicios
             return this.UsuarioRepositorio.Obtener(idCocinero);
         }
 
-        public IList<Evento> ObtenerEventosPorIdCocinero(int idCocinero)
+        public IList<EventoModel> ObtenerEventosPorIdCocinero(int idCocinero)
         {
-            return this.EventoRepositorio.ObtenerPorIdCocinero(idCocinero);
+            return this.EventoRepositorio.ObtenerPorIdCocinero(idCocinero)
+                                         .Select(x => new EventoModel(x))
+                                         .ToList();
         }
     }
 }
