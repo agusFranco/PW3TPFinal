@@ -14,3 +14,7 @@ main, .seccion-pagina {
 .d-initial-none {
     display: none !important;
 }
+
+.card-pointer {
+    cursor: pointer;
+}

@@ -20,13 +20,13 @@
             @foreach (var evento in Model)
             {
                 <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="card card-hover">
+                    <div class="card card-hover card-pointer" onclick="irAEvento('/Evento/@evento.IdEvento/Detalle')">
                         <div class="position-relative">
                             <img class="card-img-top" src="@Url.Content($"~/Fotos/{evento.Foto}")" alt="Card image cap">
                         </div>
                         <div class="card-body px-4">
                             <h5>
-                                <div class="card-title text-uppercase">@evento.Nombre</div>
+                                <span class="card-title text-uppercase">@evento.Nombre</span>
                             </h5>
                             <p class="mb-5">
                                 Cantidad de Comensales: @evento.CantidadComensales
